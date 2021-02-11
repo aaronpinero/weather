@@ -5,6 +5,7 @@ localStorage.setItem('userunit','imperial');
 const keyinput = document.querySelector('#apikey');
 const status = document.querySelector('#status');
 const mapLink = document.querySelector('#map-link');
+const tempdisplay = document.querySelector('#temp');
 
 function geoFindMe() {
   // Clear any previous information.
@@ -82,17 +83,41 @@ function processWeather() {
   if (weatherRequest.readyState === XMLHttpRequest.DONE) {
     if (weatherRequest.status === 200) {
       let response = JSON.parse(weatherRequest.responseText);
-      localStorage.setItem('weatherresponse',response);
-      const tempdisplay = document.querySelector('#temp');
+      localStorage.setItem('weatherresponse',weatherRequest.responseText);
       let temp = Math.round(response.main.temp);
       let place = response.name;
-      status.textContent = `Current temperature in ${place}`;
+      let time = formatTime(response.dt);
+      status.textContent = `Temperature in ${place} as of ${time}`;
       tempdisplay.textContent = `${temp}°`;
+      
+      // Is it day or night?
+      let day = true;
+      if (response.dt < response.sys.sunrise || response.dt > response.sys.sunset) {
+        day = false;
+      }
+      if (!day) {
+        document.getElementsByTagName('body').item(0).classList.add('night');
+      }
+      else {
+        document.getElementsByTagName('body').item(0).classList.remove('night');
+      }
     }
     else {
       window.alert("Failed Request: "+weatherRequest.status);
     }
   }
+}
+
+function formatTime(t) {
+  let d = new Date(t * 1000);
+  let hours = d.getHours();
+  let minutes = d.getMinutes();
+  let ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  let time = hours + ':' + minutes + ampm;
+  return time;
 }
 
 function setKey(e) {
