@@ -1,11 +1,12 @@
+// Default units.
 localStorage.setItem('userunit','imperial');
+
+// Identify page elements.
 const keyinput = document.querySelector('#apikey');
+const status = document.querySelector('#status');
+const mapLink = document.querySelector('#map-link');
 
 function geoFindMe() {
-  // Identify parts of the page.
-  const status = document.querySelector('#status');
-  const mapLink = document.querySelector('#map-link');
-  
   // Clear any previous information.
   mapLink.href = '';
   mapLink.textContent = '';
@@ -84,6 +85,8 @@ function processWeather() {
       localStorage.setItem('weatherresponse',response);
       const tempdisplay = document.querySelector('#temp');
       let temp = Math.round(response.main.temp);
+      let place = response.name;
+      status.textContent = `Current temperature in ${place}`;
       tempdisplay.textContent = `${temp}°`;
     }
     else {
