@@ -1,94 +1,84 @@
-// Default units.
-localStorage.setItem('userunit','imperial');
-
 // Identify page elements.
-const keyinput = document.querySelector('#apikey');
-const status = document.querySelector('#status');
-const mapLink = document.querySelector('#map-link');
-const tempdisplay = document.querySelector('#temp');
-
-function geoFindMe() {
-  // Clear any previous information.
-  mapLink.href = '';
-  mapLink.textContent = '';
-
-  // Handler for successful use of the Geolocation API.
-  function success(position) {
-    // Save the location information in local storage.
-    localStorage.setItem('userlat',position.coords.latitude);
-    localStorage.setItem('userlon',position.coords.longitude);
-    
-    // Retrieve the values for use.
-    let latitude  = localStorage.getItem('userlat');
-    let longitude = localStorage.getItem('userlon');
-
-    // Display the location.
-    status.textContent = '';
-    mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-    mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-  }
-
-  // Handler for unsuccessful use of the Geolocation API.
-  function error() {
-    status.textContent = 'Unable to retrieve your location';
-  }
-
-  // Check for support of the Geolocation API
-  if (!navigator.geolocation) {
-    status.textContent = 'Geolocation is not supported by your browser';
-  }
-  else {
-    // If location data is not stored, request it using the Geolocation API;
-    // otherwise, pull the data from local storage.
-    if (!localStorage.getItem('userlat')) {
-      status.textContent = 'Locating…';
-      navigator.geolocation.getCurrentPosition(success,error);
-    }
-    else {
-      let latitude  = localStorage.getItem('userlat');
-      let longitude = localStorage.getItem('userlon');
-
-      status.textContent = '';
-      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-      mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-    }
-  }
-}
+const key_input = document.querySelector('#apikey');
+const status_display = document.querySelector('#status');
+const location_display = document.querySelector('#location');
+const time_display = document.querySelector('#time');
+const temp_display = document.querySelector('#temp');
 
 var weatherRequest;
 
-function getWeather() {
-  if (!localStorage.getItem('weatherapikey')) {
-    window.alert("Need Weather API Key");
-    return false;
+function get_location() {
+  status_display.textContent = 'Getting location...';
+  // Handler for successful use of the Geolocation API.
+  function success(position) {
+    status_display.textContent = '';
+    // Save the location information in local storage.
+    localStorage.setItem('userlat',position.coords.latitude);
+    localStorage.setItem('userlon',position.coords.longitude);
+    // Now get the weather.
+    get_weather();
   }
-  else if (!localStorage.getItem('userlat')) {
-    window.alert("Need Location");
+  // Handler for unsuccessful use of the Geolocation API.
+  function error() {
+    status_display.textContent = 'Unable to retrieve your location';
+  }
+  
+  // Check if location information is already stored.
+  if (localStorage.getItem('userlat') && localStorage.getItem('userlon')) {
+    get_weather();
   }
   else {
-    let latitude  = localStorage.getItem('userlat');
-    let longitude = localStorage.getItem('userlon');
-    let units = localStorage.getItem('userunit');
-    let apikey = localStorage.getItem('weatherapikey');
-    let weatherlink = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apikey}`;
-    
-    weatherRequest = new XMLHttpRequest();
-    weatherRequest.onreadystatechange = processWeather;
-    weatherRequest.open('GET',weatherlink);
-    weatherRequest.send();
+    // Check for support of the Geolocation API
+    if (!navigator.geolocation) {
+      status_display.textContent = 'Geolocation is not supported by your browser';
+    }
+    else {
+      navigator.geolocation.getCurrentPosition(success,error);
+    }
   }
 }
 
-function processWeather() {
+function get_weather() {
+  if (!localStorage.getItem('weatherapikey')) {
+    window.alert("Need OpenWeather API key.");
+    return false;
+  }
+  if (!localStorage.getItem('userlat') || !localStorage.getItem('userlon')) {
+    window.alert("Need location information.");
+    return false;
+  }
+  status_display.textContent = 'Getting weather...';
+  
+  let latitude  = localStorage.getItem('userlat');
+  let longitude = localStorage.getItem('userlon');
+  let units = localStorage.getItem('userunit');
+  let apikey = localStorage.getItem('weatherapikey');
+  let weatherlink = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apikey}`;
+    
+  weatherRequest = new XMLHttpRequest();
+  weatherRequest.onreadystatechange = process_weather;
+  weatherRequest.open('GET',weatherlink);
+  weatherRequest.send();
+}
+
+function process_weather() {
   if (weatherRequest.readyState === XMLHttpRequest.DONE) {
     if (weatherRequest.status === 200) {
-      let response = JSON.parse(weatherRequest.responseText);
       localStorage.setItem('weatherresponse',weatherRequest.responseText);
+      let latitude  = localStorage.getItem('userlat');
+      let longitude = localStorage.getItem('userlon');
+      let response = JSON.parse(weatherRequest.responseText);
       let temp = Math.round(response.main.temp);
-      let place = response.name;
-      let time = formatTime(response.dt);
-      status.textContent = `Temperature in ${place} as of ${time}`;
-      tempdisplay.textContent = `${temp}°`;
+      let location = response.name;
+      let time = format_time(response.dt);
+      let location_link = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+      
+      // update display
+      status_display.textContent = '';
+      location_display.textContent = location;
+      location_display.href = location_link;
+      temp_display.textContent = `${temp}°`;
+      time_display.textContent = time;
       
       // Is it day or night?
       let day = true;
@@ -103,12 +93,12 @@ function processWeather() {
       }
     }
     else {
-      window.alert("Failed Request: "+weatherRequest.status);
+      status_display.textContent = `Failed Request: ${weatherRequest.status}`;
     }
   }
 }
 
-function formatTime(t) {
+function format_time(t) {
   let d = new Date(t * 1000);
   let hours = d.getHours();
   let minutes = d.getMinutes();
@@ -120,18 +110,37 @@ function formatTime(t) {
   return time;
 }
 
-function setKey(e) {
+function clear_info() {
+  localStorage.clear();
+  localStorage.setItem('userunit','metric');
+  document.querySelector('input[value="metric"]').checked = true;
+}
+
+function set_key(e) {
   e.preventDefault();
-  let key = keyinput.value;
+  let key = key_input.value;
   if (key != '') {
     localStorage.setItem('weatherapikey',key);
   }
 }
 
-document.querySelector('#find-me').addEventListener('click', geoFindMe);
-document.querySelector('#get-weather').addEventListener('click', getWeather);
-document.querySelector('#apikey-set').addEventListener('click', setKey);
+document.querySelector('#find-me').addEventListener('click', get_location);
+document.querySelector('#get-weather').addEventListener('click', get_weather);
+document.querySelector('#apikey-set').addEventListener('click', set_key);
+document.querySelector('#clear-info').addEventListener('click', clear_info);
 
+// Set units if they are not set
+if (!localStorage.getItem('userunit')) {
+  localStorage.setItem('userunit','metric');
+  document.querySelector('input[value="metric"]').checked = true;
+}
+else {
+  var u = localStorage.getItem('userunit');
+  document.querySelector('input[value="'+u+'"]').checked = true;
+}
+
+// If there is an API key set, get the weather.
 if (localStorage.getItem('weatherapikey')) {
-  keyinput.value = localStorage.getItem('weatherapikey');
+  key_input.value = localStorage.getItem('weatherapikey');
+  get_location();
 }

@@ -25,18 +25,19 @@
       <div class="row my-4">
         <div class="col">
           <p>
-            <button class="btn btn-primary" id="find-me">Show my location</button>
-            <button class="btn btn-primary" id="get-weather">Get my weather</button>
+            <button class="btn btn-sm btn-primary" id="find-me">Get my location</button>
+            <button class="btn btn-sm btn-primary" id="get-weather">Get my weather</button>
+            <button class="btn btn-sm btn-primary" id="clear-info">Clear info</button>
           </p>
           <form id="units">
-            <input class="btn-check" type="radio" name="unit" id="fahrenheit" value="imperial" autocomplete="off" checked>
+            <input class="btn-check" type="radio" name="unit" id="fahrenheit" value="imperial" autocomplete="off">
             <label class="btn btn-outline-primary" for="fahrenheit">°F</label>
             <input class="btn-check" type="radio" name="unit" id="celsius" value="metric" autocomplete="off">
             <label class="btn btn-outline-primary" for="celsius">°C</label>
           </form>
           <div id="output" class="my-5">
             <div id="status"></div>
-            <div><a id="map-link" target="_blank"></a></div>
+            <div>Weather in <a id="location" target="_blank"></a> as of <span id="time"></span></div>
             <div id="temp" class="display-1"></div>
           </div>
         </div>
