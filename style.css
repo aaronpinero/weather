@@ -1,13 +1,44 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&family=Pathway+Gothic+One&display=swap');
 body {
-  font-family: "IBM Plex Sans", sans-serif;
-  background-color:hsl(220,60%,90%);
+  font-family: "IBM Plex Sans Condensed", sans-serif;
+  background-color:hsl(215,50%,93%);
   color:black;
 }
-body.night {
-  background-color:hsl(220,60%,15%);
-  color:white;
+a {
+  color: hsl(215,80%,40%);
 }
-h1 {
-  font-weight: bold;
+header {
+  border-bottom: 1px solid hsla(215,0%,0%,0.1);
+}
+footer {
+  border-top: 1px solid hsla(215,0%,0%,0.2);
+}
+#message {
+  text-align: center;
+  font-size: 1.125rem;
+}
+#weather-description {
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: clamp(2rem,6vw,4rem);
+  line-height: 1;
+  text-align: center;
+}
+#temp {
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: clamp(10rem,30vw,20rem);
+  line-height: 1;
+  text-align: center;
+}
+
+body.night {
+  background-color: hsl(215,60%,15%);
+  color: white;
+}
+body.night input[type="text"] {
+  background-color: hsl(215,60%,25%);
+  border-color: hsl(215,60%,25%);
+  color: white;
+}
+body.night a {
+  color: hsl(215,80%,55%);
 }

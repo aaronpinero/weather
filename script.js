@@ -4,7 +4,9 @@ const status_display = document.querySelector('#status');
 const location_display = document.querySelector('#location');
 const time_display = document.querySelector('#time');
 const temp_display = document.querySelector('#temp');
+const weather_description = document.querySelector('#weather-description');
 
+const default_unit = "imperial";
 var weatherRequest;
 
 function get_location() {
@@ -70,6 +72,7 @@ function process_weather() {
       let response = JSON.parse(weatherRequest.responseText);
       let temp = Math.round(response.main.temp);
       let location = response.name;
+      let desc = response.weather[0].main;
       let time = format_time(response.dt);
       let location_link = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
       
@@ -77,8 +80,9 @@ function process_weather() {
       status_display.textContent = '';
       location_display.textContent = location;
       location_display.href = location_link;
-      temp_display.textContent = `${temp}°`;
+      temp_display.textContent = `${temp}`;
       time_display.textContent = time;
+      weather_description.textContent = desc;
       
       // Is it day or night?
       let day = true;
@@ -124,15 +128,21 @@ function set_key(e) {
   }
 }
 
-document.querySelector('#find-me').addEventListener('click', get_location);
+function set_units(e) {
+  localStorage.setItem('userunit',this.value);
+  get_weather();
+}
+
 document.querySelector('#get-weather').addEventListener('click', get_weather);
 document.querySelector('#apikey-set').addEventListener('click', set_key);
 document.querySelector('#clear-info').addEventListener('click', clear_info);
+document.querySelector('#fahrenheit').addEventListener('input', set_units);
+document.querySelector('#celsius').addEventListener('input', set_units);
 
 // Set units if they are not set
 if (!localStorage.getItem('userunit')) {
-  localStorage.setItem('userunit','metric');
-  document.querySelector('input[value="metric"]').checked = true;
+  localStorage.setItem('userunit',default_unit);
+  document.querySelector('input[value="'+default_unit+'"]').checked = true;
 }
 else {
   var u = localStorage.getItem('userunit');
