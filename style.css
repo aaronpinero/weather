@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&family=Pathway+Gothic+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 body {
-  font-family: "IBM Plex Sans Condensed", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   background-color:hsl(215,50%,93%);
   color:black;
 }
@@ -11,34 +11,63 @@ header {
   border-bottom: 1px solid hsla(215,0%,0%,0.1);
 }
 footer {
-  border-top: 1px solid hsla(215,0%,0%,0.2);
+  border-top: 1px solid hsla(215,0%,0%,0.1);
 }
 #message {
   text-align: center;
   font-size: 1.125rem;
 }
 #weather-description {
-  font-family: "Pathway Gothic One", sans-serif;
+  font-family: "League Gothic", sans-serif;
   font-size: clamp(2rem,6vw,4rem);
   line-height: 1;
   text-align: center;
 }
 #temp {
-  font-family: "Pathway Gothic One", sans-serif;
+  font-family: "League Gothic", sans-serif;
   font-size: clamp(10rem,30vw,20rem);
   line-height: 1;
   text-align: center;
 }
-
+aside#settings {
+  background-color: hsla(215,60%,15%,0.95);
+  border-left: 1px hsla(215,0%,100%,0.1) solid;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.5)
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 0 2rem;
+  position: fixed;
+  right: -80vw;
+  top: 0;
+  transition: right 0.5s;
+  width: 80vw;
+}
+aside#settings.open {
+  right: 0;
+}
 body.night {
   background-color: hsl(215,60%,15%);
   color: white;
 }
 body.night input[type="text"] {
-  background-color: hsl(215,60%,25%);
-  border-color: hsl(215,60%,25%);
+  background-color: hsla(215,0%,100%,0.1);
+  border-color: hsla(215,0%,100%,0.25);
   color: white;
 }
 body.night a {
-  color: hsl(215,80%,55%);
+  color: hsl(215,80%,65%);
+}
+body.night header {
+  border-bottom: 1px solid hsla(215,0%,100%,0.1);
+}
+body.night footer {
+  border-top: 1px solid hsla(215,0%,100%,0.1);
+}
+body.night .btn-outline-primary {
+  color: hsl(215,80%,65%);
+  border-color: hsl(215,80%,65%);
+}
+body.night .btn-outline-primary:hover {
+  color: white;
+  border-color: var(--bs-blue);
 }
