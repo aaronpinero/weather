@@ -133,11 +133,54 @@ function set_units(e) {
   get_weather();
 }
 
+function open_settings(e) {
+  document.querySelector('aside#settings').classList.add('open');
+  
+  function close_settings_button() {
+    document.querySelector('aside#settings').classList.remove('open');
+    document.querySelector('button#close-settings').removeEventListener('click',close_settings_button);
+    document.removeEventListener('click',close_settings_clickaway);
+    document.removeEventListener('keydown',close_settings_key);
+  }
+  
+  function close_settings_key(e) {
+    // escape key closes
+    if (e.keyCode == 27) {
+      document.querySelector('aside#settings').classList.remove('open');
+      document.querySelector('button#close-settings').removeEventListener('click',close_settings_button);
+      document.removeEventListener('click',close_settings_clickaway);
+      document.removeEventListener('keydown',close_settings_key);
+    }
+  }
+  
+  function close_settings_clickaway(e) {
+    let is_open_button = e.target.isSameNode(document.querySelector('#open-settings'));
+    let is_open_button_child = !!e.target.closest('#open-settings');
+    let is_settings = e.target.isSameNode(document.querySelector('#settings'));
+    let is_settings_child = !!e.target.closest('#settings');
+    
+    if (is_open_button === false && is_open_button_child === false && is_settings === false && is_settings_child === false) {
+      document.querySelector('aside#settings').classList.remove('open');
+      document.querySelector('button#close-settings').removeEventListener('click',close_settings_button);
+      document.removeEventListener('click',close_settings_clickaway);
+      document.removeEventListener('keydown',close_settings_key);
+    }
+  }
+  
+  // click away
+  document.addEventListener('click',close_settings_clickaway);
+  // escape key
+  document.addEventListener('keydown',close_settings_key);
+  // close button
+  document.querySelector('#close-settings').addEventListener('click',close_settings_button);
+}
+
 document.querySelector('#get-weather').addEventListener('click', get_weather);
 document.querySelector('#apikey-set').addEventListener('click', set_key);
 document.querySelector('#clear-info').addEventListener('click', clear_info);
 document.querySelector('#fahrenheit').addEventListener('input', set_units);
 document.querySelector('#celsius').addEventListener('input', set_units);
+document.querySelector('#open-settings').addEventListener('click', open_settings);
 
 // Set units if they are not set
 if (!localStorage.getItem('userunit')) {

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 body {
   font-family: "IBM Plex Sans", sans-serif;
-  background-color:hsl(215,50%,93%);
+  background-color:hsl(215,40%,92%);
   color:black;
 }
 a {
@@ -30,12 +30,13 @@ footer {
   text-align: center;
 }
 aside#settings {
-  background-color: hsla(215,60%,15%,0.95);
-  border-left: 1px hsla(215,0%,100%,0.1) solid;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.5)
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  background-color:hsla(215,40%,90%,0.95);
+  border-left: 1px hsla(215,0%,0%,0.1) solid;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.15);
   box-sizing: border-box;
   height: 100vh;
-  padding: 0 2rem;
   position: fixed;
   right: -80vw;
   top: 0;
@@ -46,7 +47,7 @@ aside#settings.open {
   right: 0;
 }
 body.night {
-  background-color: hsl(215,60%,15%);
+  background-color: hsl(215,40%,15%);
   color: white;
 }
 body.night input[type="text"] {
@@ -70,4 +71,9 @@ body.night .btn-outline-primary {
 body.night .btn-outline-primary:hover {
   color: white;
   border-color: var(--bs-blue);
+}
+body.night aside#settings {
+  background-color: hsla(215,40%,20%,0.95);
+  border-left: 1px hsla(215,0%,100%,0.1) solid;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.5);
 }

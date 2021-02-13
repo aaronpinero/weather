@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Weather</title>
+    <title>☔️Ark</title>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'>
     <link rel='stylesheet' href='./league/stylesheet.css'>
@@ -13,29 +13,30 @@
   <body>
     <div class="container-fluid">
       <header class="row">
-        <div class="col py-3 d-flex justify-content-between align-items-center">
-          <h1 class="m-0 fs-3">My Weather</h1>
-          <button class="btn btn-sm btn-primary" id="open-settings"><i class="fas fa-cog"></i><span class="sr-only">Settings</span></button>
+        <div class="col py-3 px-4 d-flex justify-content-between align-items-center">
+          <h1 class="m-0 fs-3"><i class="fas fa-umbrella"></i> Ark</h1>
+          <button class="btn btn-sm btn-primary" id="open-settings"><i class="fas fa-cog fa-fw"></i><span class="sr-only">Settings</span></button>
         </div>
       </header>
       <main class="row my-5">
-        <div class="col">
+        <div class="col px-4">
           <div id="output" class="mb-3">
             <div id="status"></div>
-            <div id="message" class="mb-3">Weather in <a id="location" target="_blank"></a> as of <span id="time"></span> <button class="btn btn-sm btn-primary ms-2" id="get-weather"><i class="fas fa-redo-alt"></i><span class="sr-only">Get my weather</span></button></div>
+            <div id="message" class="mb-3">Weather in <a id="location" target="_blank"></a> as of <span id="time"></span> <button class="btn btn-sm btn-primary ms-2" id="get-weather"><i class="fas fa-redo-alt fa-fw"></i><span class="sr-only">Get my weather</span></button></div>
             <div id="weather-description">&nbsp;</div>
             <div id="temp">&nbsp;</div>
           </div>
         </div>
       </main>
-      <aside id="settings">
-        <header class="row py-3">
-          <div class="col">
+      <aside id="settings" class="container-fluid">
+        <header class="row">
+          <div class="col py-3 px-4 d-flex justify-content-between align-items-center">
             <h1 class="m-0 fs-3">Settings</h1>
+            <button class="btn btn-sm btn-primary" id="close-settings"><i class="fas fa-times fa-fw"></i><span class="sr-only">Close Settings</span></button>
           </div>
         </header>
         <div class="row">
-          <div class="col">
+          <div class="col px-4">
             <form id="settings">
               <div class="row my-3">
                 <label for="apikey" class="col-sm-5 col-form-label">Weather API Key</label>
