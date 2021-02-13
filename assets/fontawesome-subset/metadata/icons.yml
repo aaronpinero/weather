@@ -1,0 +1,669 @@
+cloud-drizzle:
+  changes:
+    - 5.5.0
+  label: Cloud with Drizzle
+  search:
+    terms:
+      - precipitation
+      - rain
+      - sprinkle
+  styles:
+    - light
+    - regular
+  unicode: f738
+  voted: false
+cloud-hail:
+  changes:
+    - 5.5.0
+  label: Cloud with Hail
+  search:
+    terms:
+      - golf balls
+      - ice
+      - precipitation
+      - sleet
+      - snow
+      - storm
+  styles:
+    - light
+    - regular
+  unicode: f739
+  voted: false
+cloud-hail-mixed:
+  changes:
+    - 5.5.0
+  label: Cloud with Mixed Hail
+  search:
+    terms:
+      - freezing
+      - ice
+      - precipitation
+      - rain
+      - sleet
+      - snow
+      - storm
+  styles:
+    - light
+    - regular
+  unicode: f73a
+  voted: false
+cloud-moon:
+  changes:
+    - 5.4.0
+    - 5.5.0
+  label: Cloud with Moon
+  search:
+    terms:
+      - crescent
+      - evening
+      - lunar
+      - night
+      - partly cloudy
+      - sky
+  styles:
+    - light
+    - regular
+  unicode: f6c3
+  voted: false
+cloud-moon-rain:
+  changes:
+    - 5.5.0
+  label: Cloud with Moon and Rain
+  search:
+    terms:
+      - crescent
+      - evening
+      - lunar
+      - night
+      - partly cloudy
+      - precipitation
+      - rain
+      - sky
+      - storm
+  styles:
+    - light
+    - regular
+  unicode: f73c
+  voted: false
+cloud-showers:
+  changes:
+    - 5.5.0
+  label: Cloud with Showers
+  search:
+    terms:
+      - precipitation
+      - rain
+      - sky
+      - storm
+  styles:
+    - light
+    - regular
+  unicode: f73f
+  voted: false
+cloud-showers-heavy:
+  changes:
+    - 5.5.0
+  label: Cloud with Heavy Showers
+  search:
+    terms:
+      - precipitation
+      - rain
+      - sky
+      - storm
+  styles:
+    - light
+    - regular
+  unicode: f740
+  voted: false
+cloud-sleet:
+  changes:
+    - 5.5.0
+  label: Cloud with Sleet
+  search:
+    terms:
+      - freezing
+      - hail
+      - precipitation
+      - rain
+      - winter
+      - wintry mix
+  styles:
+    - light
+    - regular
+  unicode: f741
+  voted: false
+cloud-snow:
+  changes:
+    - 5.5.0
+  label: Cloud with Snow
+  search:
+    terms:
+      - blizzard
+      - noreaster
+      - precipitation
+      - winter
+  styles:
+    - light
+    - regular
+  unicode: f742
+  voted: false
+cloud-sun:
+  changes:
+    - 5.4.0
+    - 5.5.0
+  label: Cloud with Sun
+  search:
+    terms:
+      - clear
+      - day
+      - daytime
+      - fall
+      - outdoors
+      - overcast
+      - partly cloudy
+  styles:
+    - light
+    - regular
+  unicode: f6c4
+  voted: false
+cloud-sun-rain:
+  changes:
+    - 5.5.0
+  label: Cloud with Sun and Rain
+  search:
+    terms:
+      - day
+      - overcast
+      - precipitation
+      - storm
+      - summer
+      - sunshower
+  styles:
+    - light
+    - regular
+  unicode: f743
+  voted: false
+clouds:
+  changes:
+    - 5.5.0
+  label: Clouds
+  search:
+    terms:
+      - cloudy
+      - fog
+      - haze
+      - overcast
+      - smoke
+      - storm
+      - weather
+  styles:
+    - light
+    - regular
+  unicode: f744
+  voted: false
+clouds-moon:
+  changes:
+    - 5.5.0
+  label: Clouds with Moon
+  search:
+    terms:
+      - cloudy
+      - moonlight
+      - night
+      - overcast
+      - sky
+  styles:
+    - light
+    - regular
+  unicode: f745
+  voted: false
+clouds-sun:
+  changes:
+    - 5.5.0
+  label: Clouds with Sun
+  search:
+    terms:
+      - cloudy
+      - day
+      - moonlight
+      - overcast
+      - sky
+      - summer
+  styles:
+    - light
+    - regular
+  unicode: f746
+  voted: false
+cog:
+  changes:
+    - '1'
+    - 5.0.0
+  label: cog
+  search:
+    terms:
+      - gear
+      - mechanical
+      - settings
+      - sprocket
+      - wheel
+  styles:
+    - light
+    - regular
+  unicode: f013
+  voted: false
+fog:
+  changes:
+    - 5.5.0
+  label: Fog
+  search:
+    terms:
+      - haze
+      - karl
+      - mist
+      - opaque
+      - san francisco
+      - visibility
+      - weather
+  styles:
+    - light
+    - regular
+  unicode: f74e
+  voted: false
+location-arrow:
+  changes:
+    - '3.1'
+    - 5.0.0
+  label: location-arrow
+  search:
+    terms:
+      - address
+      - compass
+      - coordinate
+      - direction
+      - gps
+      - map
+      - navigation
+      - place
+  styles:
+    - light
+    - regular
+  unicode: f124
+  voted: false
+moon:
+  changes:
+    - '3.2'
+    - 5.0.0
+    - 5.11.0
+    - 5.11.1
+  label: Moon
+  search:
+    terms:
+      - contrast
+      - crescent
+      - dark
+      - lunar
+      - night
+  styles:
+    - light
+    - regular
+  unicode: f186
+  voted: false
+moon-cloud:
+  changes:
+    - 5.5.0
+  label: Moon with Cloud
+  search:
+    terms:
+      - crescent
+      - dark
+      - lunar
+      - night
+      - overcast
+  styles:
+    - light
+    - regular
+  unicode: f754
+  voted: false
+moon-stars:
+  changes:
+    - 5.5.0
+  label: Moon with Stars
+  search:
+    terms:
+      - clear
+      - crescent
+      - lunar
+      - space
+      - star
+  styles:
+    - light
+    - regular
+  unicode: f755
+  voted: false
+redo:
+  changes:
+    - '1'
+    - 5.0.0
+    - 5.8.0
+  label: Redo
+  search:
+    terms:
+      - forward
+      - refresh
+      - reload
+      - repeat
+  styles:
+    - light
+    - regular
+  unicode: f01e
+  voted: false
+snow-blowing:
+  changes:
+    - 5.5.0
+  label: Snow Blowing
+  search:
+    terms:
+      - blizzard
+      - precipitation
+      - storm
+      - winter
+  styles:
+    - regular
+    - light
+  unicode: f761
+  voted: false
+snowflake:
+  changes:
+    - '4.7'
+    - 5.0.0
+    - 5.5.0
+  label: Snowflake
+  search:
+    terms:
+      - precipitation
+      - rain
+      - winter
+  styles:
+    - light
+    - regular
+  unicode: f2dc
+  voted: false
+snowflakes:
+  changes:
+    - 5.6.0
+  label: Snowflakes
+  search:
+    terms:
+      - precipitation
+      - rain
+      - winter
+  styles:
+    - regular
+    - light
+  unicode: f7cf
+sun:
+  changes:
+    - '3.2'
+    - 5.0.0
+    - 5.5.0
+  label: Sun
+  search:
+    terms:
+      - brighten
+      - contrast
+      - day
+      - lighter
+      - sol
+      - solar
+      - star
+      - weather
+  styles:
+    - light
+    - regular
+  unicode: f185
+  voted: false
+sun-cloud:
+  changes:
+    - 5.5.0
+  label: Sun with Cloud
+  search:
+    terms:
+      - cloud
+      - day
+      - lighter
+      - sol
+      - solar
+      - star
+      - weather
+  styles:
+    - light
+    - regular
+  unicode: f763
+  voted: false
+sun-haze:
+  changes:
+    - 5.5.0
+  label: Sun Haze
+  search:
+    terms:
+      - fog
+      - heat
+      - hot
+      - sweltering
+  styles:
+    - light
+    - regular
+  unicode: f765
+  voted: false
+sunrise:
+  changes:
+    - 5.5.0
+  label: Sunrise
+  search:
+    terms:
+      - dawn
+      - day
+      - daybreak
+      - daylight
+      - daytime
+      - morning
+      - sun up
+  styles:
+    - light
+    - regular
+  unicode: f766
+  voted: false
+sunset:
+  changes:
+    - 5.5.0
+  label: Sunset
+  search:
+    terms:
+      - dusk
+      - night
+      - nighttime
+      - sun down
+  styles:
+    - light
+    - regular
+  unicode: f767
+  voted: false
+temperature-frigid:
+  changes:
+    - 5.5.0
+  label: Temperature Frigid
+  search:
+    terms:
+      - cold
+      - mercury
+      - thermometer
+      - winter
+  styles:
+    - light
+    - regular
+  unicode: f768
+  voted: false
+temperature-high:
+  changes:
+    - 5.5.0
+  label: High Temperature
+  search:
+    terms:
+      - cook
+      - covid-19
+      - mercury
+      - summer
+      - thermometer
+      - warm
+  styles:
+    - light
+    - regular
+  unicode: f769
+  voted: false
+temperature-hot:
+  changes:
+    - 5.5.0
+  label: Temperature Hot
+  search:
+    terms:
+      - heat
+      - mercury
+      - summer
+      - thermometer
+  styles:
+    - light
+    - regular
+  unicode: f76a
+  voted: false
+temperature-low:
+  changes:
+    - 5.5.0
+  label: Low Temperature
+  search:
+    terms:
+      - cold
+      - cool
+      - covid-19
+      - mercury
+      - thermometer
+      - winter
+  styles:
+    - light
+    - regular
+  unicode: f76b
+  voted: false
+thunderstorm:
+  changes:
+    - 5.5.0
+  label: Thunderstorm
+  search:
+    terms:
+      - bolt
+      - lightning
+      - precipitation
+      - rain
+      - storm
+      - weather
+  styles:
+    - light
+    - regular
+  unicode: f76c
+  voted: false
+thunderstorm-moon:
+  changes:
+    - 5.5.0
+  label: Thunderstorm with Moon
+  search:
+    terms:
+      - bolt
+      - lightning
+      - lunar
+      - moon
+      - precipitation
+      - rain
+      - storm
+      - weather
+  styles:
+    - light
+    - regular
+  unicode: f76d
+  voted: false
+thunderstorm-sun:
+  changes:
+    - 5.5.0
+  label: Thunderstorm with Sun
+  search:
+    terms:
+      - bolt
+      - lightning
+      - precipitation
+      - rain
+      - solar
+      - storm
+      - sun
+      - weather
+  styles:
+    - light
+    - regular
+  unicode: f76e
+  voted: false
+times:
+  changes:
+    - '1'
+    - 5.0.0
+    - 5.0.13
+    - 5.11.0
+    - 5.11.1
+  label: Times
+  search:
+    terms:
+      - close
+      - cross
+      - error
+      - exit
+      - incorrect
+      - notice
+      - notification
+      - notify
+      - problem
+      - wrong
+      - x
+  styles:
+    - light
+    - regular
+  unicode: f00d
+  voted: false
+umbrella:
+  changes:
+    - '2'
+    - 5.0.0
+  label: Umbrella
+  search:
+    terms:
+      - protection
+      - rain
+      - storm
+      - wet
+  styles:
+    - regular
+    - light
+  unicode: f0e9
+  voted: false
+wind:
+  changes:
+    - 5.4.0
+    - 5.5.0
+  label: Wind
+  search:
+    terms:
+      - air
+      - blow
+      - breeze
+      - fall
+      - seasonal
+      - weather
+  styles:
+    - light
+    - regular
+  unicode: f72e
+  voted: false

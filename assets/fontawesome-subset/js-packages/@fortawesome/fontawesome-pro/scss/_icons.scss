@@ -1,0 +1,42 @@
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+readers do not read off random characters that represent icons */
+
+.#{$fa-css-prefix}-cloud-drizzle:before { content: fa-content($fa-var-cloud-drizzle); }
+.#{$fa-css-prefix}-cloud-hail:before { content: fa-content($fa-var-cloud-hail); }
+.#{$fa-css-prefix}-cloud-hail-mixed:before { content: fa-content($fa-var-cloud-hail-mixed); }
+.#{$fa-css-prefix}-cloud-moon:before { content: fa-content($fa-var-cloud-moon); }
+.#{$fa-css-prefix}-cloud-moon-rain:before { content: fa-content($fa-var-cloud-moon-rain); }
+.#{$fa-css-prefix}-cloud-showers:before { content: fa-content($fa-var-cloud-showers); }
+.#{$fa-css-prefix}-cloud-showers-heavy:before { content: fa-content($fa-var-cloud-showers-heavy); }
+.#{$fa-css-prefix}-cloud-sleet:before { content: fa-content($fa-var-cloud-sleet); }
+.#{$fa-css-prefix}-cloud-snow:before { content: fa-content($fa-var-cloud-snow); }
+.#{$fa-css-prefix}-cloud-sun:before { content: fa-content($fa-var-cloud-sun); }
+.#{$fa-css-prefix}-cloud-sun-rain:before { content: fa-content($fa-var-cloud-sun-rain); }
+.#{$fa-css-prefix}-clouds:before { content: fa-content($fa-var-clouds); }
+.#{$fa-css-prefix}-clouds-moon:before { content: fa-content($fa-var-clouds-moon); }
+.#{$fa-css-prefix}-clouds-sun:before { content: fa-content($fa-var-clouds-sun); }
+.#{$fa-css-prefix}-cog:before { content: fa-content($fa-var-cog); }
+.#{$fa-css-prefix}-fog:before { content: fa-content($fa-var-fog); }
+.#{$fa-css-prefix}-location-arrow:before { content: fa-content($fa-var-location-arrow); }
+.#{$fa-css-prefix}-moon:before { content: fa-content($fa-var-moon); }
+.#{$fa-css-prefix}-moon-cloud:before { content: fa-content($fa-var-moon-cloud); }
+.#{$fa-css-prefix}-moon-stars:before { content: fa-content($fa-var-moon-stars); }
+.#{$fa-css-prefix}-redo:before { content: fa-content($fa-var-redo); }
+.#{$fa-css-prefix}-snow-blowing:before { content: fa-content($fa-var-snow-blowing); }
+.#{$fa-css-prefix}-snowflake:before { content: fa-content($fa-var-snowflake); }
+.#{$fa-css-prefix}-snowflakes:before { content: fa-content($fa-var-snowflakes); }
+.#{$fa-css-prefix}-sun:before { content: fa-content($fa-var-sun); }
+.#{$fa-css-prefix}-sun-cloud:before { content: fa-content($fa-var-sun-cloud); }
+.#{$fa-css-prefix}-sun-haze:before { content: fa-content($fa-var-sun-haze); }
+.#{$fa-css-prefix}-sunrise:before { content: fa-content($fa-var-sunrise); }
+.#{$fa-css-prefix}-sunset:before { content: fa-content($fa-var-sunset); }
+.#{$fa-css-prefix}-temperature-frigid:before { content: fa-content($fa-var-temperature-frigid); }
+.#{$fa-css-prefix}-temperature-high:before { content: fa-content($fa-var-temperature-high); }
+.#{$fa-css-prefix}-temperature-hot:before { content: fa-content($fa-var-temperature-hot); }
+.#{$fa-css-prefix}-temperature-low:before { content: fa-content($fa-var-temperature-low); }
+.#{$fa-css-prefix}-thunderstorm:before { content: fa-content($fa-var-thunderstorm); }
+.#{$fa-css-prefix}-thunderstorm-moon:before { content: fa-content($fa-var-thunderstorm-moon); }
+.#{$fa-css-prefix}-thunderstorm-sun:before { content: fa-content($fa-var-thunderstorm-sun); }
+.#{$fa-css-prefix}-times:before { content: fa-content($fa-var-times); }
+.#{$fa-css-prefix}-umbrella:before { content: fa-content($fa-var-umbrella); }
+.#{$fa-css-prefix}-wind:before { content: fa-content($fa-var-wind); }

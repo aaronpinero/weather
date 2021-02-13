@@ -1,0 +1,59 @@
+// Variables
+// --------------------------
+
+$fa-font-path:         "../webfonts" !default;
+$fa-font-size-base:    16px !default;
+$fa-font-display:      block !default;
+$fa-css-prefix:        fa !default;
+$fa-version:           "5.13.1" !default;
+$fa-border-color:      #eee !default;
+$fa-inverse:           #fff !default;
+$fa-li-width:          2em !default;
+$fa-fw-width:          (20em / 16);
+$fa-primary-opacity:   1 !default;
+$fa-secondary-opacity: .4 !default;
+
+// Convenience function used to set content property
+@function fa-content($fa-var) {
+  @return unquote("\"#{ $fa-var }\"");
+}
+
+$fa-var-cloud-drizzle: \f738;
+$fa-var-cloud-hail: \f739;
+$fa-var-cloud-hail-mixed: \f73a;
+$fa-var-cloud-moon: \f6c3;
+$fa-var-cloud-moon-rain: \f73c;
+$fa-var-cloud-showers: \f73f;
+$fa-var-cloud-showers-heavy: \f740;
+$fa-var-cloud-sleet: \f741;
+$fa-var-cloud-snow: \f742;
+$fa-var-cloud-sun: \f6c4;
+$fa-var-cloud-sun-rain: \f743;
+$fa-var-clouds: \f744;
+$fa-var-clouds-moon: \f745;
+$fa-var-clouds-sun: \f746;
+$fa-var-cog: \f013;
+$fa-var-fog: \f74e;
+$fa-var-location-arrow: \f124;
+$fa-var-moon: \f186;
+$fa-var-moon-cloud: \f754;
+$fa-var-moon-stars: \f755;
+$fa-var-redo: \f01e;
+$fa-var-snow-blowing: \f761;
+$fa-var-snowflake: \f2dc;
+$fa-var-snowflakes: \f7cf;
+$fa-var-sun: \f185;
+$fa-var-sun-cloud: \f763;
+$fa-var-sun-haze: \f765;
+$fa-var-sunrise: \f766;
+$fa-var-sunset: \f767;
+$fa-var-temperature-frigid: \f768;
+$fa-var-temperature-high: \f769;
+$fa-var-temperature-hot: \f76a;
+$fa-var-temperature-low: \f76b;
+$fa-var-thunderstorm: \f76c;
+$fa-var-thunderstorm-moon: \f76d;
+$fa-var-thunderstorm-sun: \f76e;
+$fa-var-times: \f00d;
+$fa-var-umbrella: \f0e9;
+$fa-var-wind: \f72e;

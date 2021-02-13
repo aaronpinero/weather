@@ -1,0 +1,297 @@
+accessibility:
+  icons: []
+  label: Accessibility
+alert:
+  icons: []
+  label: Alert
+animals:
+  icons: []
+  label: Animals
+arrows:
+  icons:
+    - location-arrow
+    - redo
+  label: Arrows
+audio-video:
+  icons:
+    - redo
+  label: Audio & Video
+automotive:
+  icons: []
+  label: Automotive
+autumn:
+  icons:
+    - cloud-sun
+    - wind
+  label: Autumn
+beverage:
+  icons: []
+  label: Beverage
+buildings:
+  icons: []
+  label: Buildings
+business:
+  icons: []
+  label: Business
+camping:
+  icons:
+    - sunrise
+    - sunset
+  label: Camping
+charity:
+  icons: []
+  label: Charity
+chat:
+  icons: []
+  label: Chat
+chess:
+  icons: []
+  label: Chess
+childhood:
+  icons: []
+  label: Childhood
+clothing:
+  icons: []
+  label: Clothing
+code:
+  icons: []
+  label: Code
+communication:
+  icons: []
+  label: Communication
+computers:
+  icons: []
+  label: Computers
+construction:
+  icons: []
+  label: Construction
+currency:
+  icons: []
+  label: Currency
+date-time:
+  icons: []
+  label: Date & Time
+design:
+  icons: []
+  label: Design
+editors:
+  icons:
+    - redo
+  label: Editors
+education:
+  icons: []
+  label: Education
+emoji:
+  icons: []
+  label: Emoji
+energy:
+  icons:
+    - sun
+    - wind
+  label: Energy
+files:
+  icons: []
+  label: Files
+finance:
+  icons: []
+  label: Finance
+fitness:
+  icons: []
+  label: Fitness
+food:
+  icons: []
+  label: Food
+fruit-vegetable:
+  icons: []
+  label: Fruits & Vegetables
+games:
+  icons: []
+  label: Games
+gaming-tabletop:
+  icons: []
+  label: Tabletop Gaming
+gender:
+  icons: []
+  label: Genders
+halloween:
+  icons:
+    - cloud-moon
+  label: Halloween
+hands:
+  icons: []
+  label: Hands
+health:
+  icons: []
+  label: Health
+holiday:
+  icons: []
+  label: Holiday
+hotel:
+  icons:
+    - snowflake
+  label: Hotel
+household:
+  icons:
+    - snowflake
+  label: Household
+images:
+  icons: []
+  label: Images
+interfaces:
+  icons:
+    - cog
+    - redo
+    - times
+  label: Interfaces
+logistics:
+  icons: []
+  label: Logistics
+maps:
+  icons:
+    - location-arrow
+    - umbrella
+  label: Maps
+maritime:
+  icons:
+    - wind
+  label: Maritime
+marketing:
+  icons: []
+  label: Marketing
+mathematics:
+  icons:
+    - times
+  label: Mathematics
+medical:
+  icons: []
+  label: Medical
+moving:
+  icons: []
+  label: Moving
+music:
+  icons: []
+  label: Music
+objects:
+  icons:
+    - cog
+    - moon
+    - snowflake
+    - sun
+    - umbrella
+  label: Objects
+payments-shopping:
+  icons: []
+  label: Payments & Shopping
+pharmacy:
+  icons: []
+  label: Pharmacy
+political:
+  icons: []
+  label: Political
+religion:
+  icons: []
+  label: Religion
+science:
+  icons:
+    - temperature-high
+    - temperature-low
+  label: Science
+science-fiction:
+  icons:
+    - moon
+    - moon-stars
+  label: Science Fiction
+security:
+  icons: []
+  label: Security
+shapes:
+  icons: []
+  label: Shapes
+shopping:
+  icons: []
+  label: Shopping
+social:
+  icons: []
+  label: Social
+spinners:
+  icons:
+    - cog
+    - snowflake
+    - sun
+  label: Spinners
+sports:
+  icons: []
+  label: Sports
+spring:
+  icons:
+    - cloud-sun
+    - cloud-sun-rain
+    - thunderstorm
+    - umbrella
+  label: Spring
+status:
+  icons: []
+  label: Status
+summer:
+  icons:
+    - sun
+    - temperature-hot
+  label: Summer
+toggle:
+  icons: []
+  label: Toggle
+travel:
+  icons: []
+  label: Travel
+users-people:
+  icons: []
+  label: Users & People
+vehicles:
+  icons: []
+  label: Vehicles
+weather:
+  icons:
+    - cloud-drizzle
+    - cloud-hail
+    - cloud-hail-mixed
+    - cloud-moon
+    - cloud-moon-rain
+    - cloud-showers
+    - cloud-showers-heavy
+    - cloud-sleet
+    - cloud-snow
+    - cloud-sun
+    - cloud-sun-rain
+    - clouds
+    - clouds-moon
+    - clouds-sun
+    - fog
+    - moon
+    - moon-cloud
+    - moon-stars
+    - snow-blowing
+    - snowflake
+    - snowflakes
+    - sun
+    - sun-cloud
+    - sun-haze
+    - sunrise
+    - sunset
+    - temperature-frigid
+    - temperature-high
+    - temperature-hot
+    - temperature-low
+    - thunderstorm
+    - thunderstorm-moon
+    - thunderstorm-sun
+    - umbrella
+    - wind
+  label: Weather
+winter:
+  icons:
+    - snowflakes
+    - temperature-frigid
+  label: Winter
+writing:
+  icons: []
+  label: Writing
