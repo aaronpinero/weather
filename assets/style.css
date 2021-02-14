@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
-body {
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=IBM+Plex+Sans+Condensed:wght@400;700&display=swap');body {
   font-family: "IBM Plex Sans", sans-serif;
   background-color:hsl(215,40%,92%);
   color:black;
@@ -80,8 +79,9 @@ footer {
   line-height: 1;
 }
 #temp {
-  font-family: "League Gothic", sans-serif;
+  font-family: "IBM Plex Sans Condensed", sans-serif;
   font-size: clamp(10rem,30vw,20rem);
+  font-weight: bold;
   line-height: 1;
 }
 .hilow {
@@ -91,8 +91,9 @@ footer {
 }
 #temp-high,
 #temp-low {
-  font-family: "League Gothic", sans-serif;
+  font-family: "IBM Plex Sans Condensed", sans-serif;
   font-size: 1.75rem;
+  font-weight: bold;
 }
 aside#settings {
   backdrop-filter: blur(3px);
