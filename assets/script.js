@@ -1,6 +1,5 @@
 // Identify page elements.
 const key_input = document.querySelector('#apikey');
-const status_display = document.querySelector('#status');
 const location_display = document.querySelector('#location');
 const time_display = document.querySelector('#time');
 const temp_display = document.querySelector('#temp');
@@ -12,10 +11,8 @@ const default_unit = "imperial";
 var weatherRequest;
 
 function get_location() {
-  status_display.textContent = 'Getting location...';
   // Handler for successful use of the Geolocation API.
   function success(position) {
-    status_display.textContent = '';
     // Save the location information in local storage.
     localStorage.setItem('userlat',position.coords.latitude);
     localStorage.setItem('userlon',position.coords.longitude);
@@ -24,7 +21,7 @@ function get_location() {
   }
   // Handler for unsuccessful use of the Geolocation API.
   function error() {
-    status_display.textContent = 'Unable to retrieve your location';
+    window.alert('Unable to retrieve your location');
   }
   
   // Check if location information is already stored.
@@ -34,7 +31,7 @@ function get_location() {
   else {
     // Check for support of the Geolocation API
     if (!navigator.geolocation) {
-      status_display.textContent = 'Geolocation is not supported by your browser';
+      window.alert('Geolocation is not supported by your browser');
     }
     else {
       navigator.geolocation.getCurrentPosition(success,error);
@@ -51,7 +48,8 @@ function get_weather() {
     window.alert("Need location information.");
     return false;
   }
-  status_display.textContent = 'Getting weather...';
+  document.querySelector('#output').classList.add('loading');
+  document.getElementsByTagName('body').item(0).setAttribute('data-icon','');
   
   let latitude  = localStorage.getItem('userlat');
   let longitude = localStorage.getItem('userlon');
@@ -82,12 +80,11 @@ function process_weather() {
       let location_link = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
       
       // update display
-      status_display.textContent = '';
       location_display.textContent = location;
       location_display.href = location_link;
       temp_display.textContent = temp;
-      temp_low_display.textContent = temp_low;
-      temp_high_display.textContent = temp_high;
+      temp_low_display.textContent = `${temp_low}˚`;
+      temp_high_display.textContent = `${temp_high}˚`;
       time_display.textContent = time;
       weather_description.textContent = desc;
       
@@ -103,11 +100,14 @@ function process_weather() {
         document.getElementsByTagName('body').item(0).classList.remove('night');
       }
       
-      // Set icon through style.
-      document.getElementsByTagName('body').item(0).classList.add('icon-'+icon_code);
+      // Set icon through style
+      document.getElementsByTagName('body').item(0).setAttribute('data-icon',icon_code);
+      
+      // Finish loading.
+      document.querySelector('#output').classList.remove('loading');
     }
     else {
-      status_display.textContent = `Failed Request: ${weatherRequest.status}`;
+      window.alert(`Failed Request: ${weatherRequest.status}`);
     }
   }
 }

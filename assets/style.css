@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=IBM+Plex+Sans+Condensed:wght@400;700&display=swap');body {
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=IBM+Plex+Sans+Condensed:wght@400;700&display=swap');
+body {
   font-family: "IBM Plex Sans", sans-serif;
   background-color:hsl(215,40%,92%);
   color:black;
 }
 body::before {
-  color: hsla(215,60%,80%,0.33);
+  color: hsla(215,60%,88%);
   content: "";
   display: block;
   font-family: 'Font Awesome 5 Pro';
@@ -18,44 +19,44 @@ body::before {
   width: 100%;
   z-index: -1;
 }
-body.icon-01d::before { /* clear day */
+body[data-icon="01d"]::before { /* clear day */
   content: "\f185";
 }
-body.icon-01n::before { /* clear night */
+body[data-icon="01n"]::before { /* clear night */
   content: "\f755";
 }
-body.icon-02d::before { /* few clouds day */
+body[data-icon="02d"]::before { /* few clouds day */
   content: "\f6c4";
 }
-body.icon-02n::before { /* few clouds night */
+body[data-icon="02n"]::before { /* few clouds night */
   content: "\f6c3";
 }
-body.icon-03n::before,
-body.icon-03d::before { /* clouds */
+body[data-icon="03n"]::before,
+body[data-icon="03d"]::before { /* clouds */
   content: "\f0c2";
 }
-body.icon-04n::before,
-body.icon-04d::before { /* broken clouds */
+body[data-icon="04n"]::before,
+body[data-icon="04d"]::before { /* broken clouds */
   content: "\f744";
 }
-body.icon-09n::before,
-body.icon-09d::before { /* shower rain */
+body[data-icon="09n"]::before,
+body[data-icon="09d"]::before { /* shower rain */
   content: "\f73f";
 }
-body.icon-10n::before,
-body.icon-10d::before { /* rain */
+body[data-icon="10n"]::before,
+body[data-icon="10d"]::before { /* rain */
   content: "\f740";
 }
-body.icon-11n::before,
-body.icon-11d::before { /* thunderstorm */
+body[data-icon="11n"]::before,
+body[data-icon="11d"]::before { /* thunderstorm */
   content: "\f76c";
 }
-body.icon-13n::before,
-body.icon-13d::before { /* snow */
+body[data-icon="13n"]::before,
+body[data-icon="13d"]::before { /* snow */
   content: "\f7cf";
 }
-body.icon-50n::before,
-body.icon-50d::before { /* fog */
+body[data-icon="50n"]::before,
+body[data-icon="50d"]::before { /* fog */
   content: "\f74e";
 }
 a {
@@ -71,6 +72,25 @@ footer {
 #output {
   text-align: center;
 }
+#output > * {
+  opacity: 1;
+  transition: opacity 0.25s;
+}
+#output.loading {
+  animation: loading 2s infinite;
+  background-image:
+    linear-gradient(100deg, hsla(215,60%,95%,0) 35%, hsla(215,60%,95%,0.5) 50%, hsla(215,60%,95%,0) 65%),
+    linear-gradient(hsla(215,60%,88%) 1.75rem, transparent 0),
+    linear-gradient(hsla(215,60%,88%) clamp(2rem,6vw,4rem), transparent 0),
+    linear-gradient(hsla(215,60%,88%) clamp(10rem,30vw,20rem), transparent 0),
+    linear-gradient(hsla(215,60%,88%) 2.5rem, transparent 0);
+  background-size: 50% 100%, min(360px,100%) 1.75rem, min(160px,100%) clamp(2rem,6vw,4rem), min(200px,100%) clamp(8rem,30vw,20rem), min(240px,100%) 2.5rem;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position: -200% 0, center top, center 2.75rem, center clamp(4.75rem,calc(6vw + 2.75rem),6.75rem), center bottom;
+}
+#output.loading > * {
+  opacity: 0;
+}
 #message {
   font-size: 1.125rem;
 }
@@ -79,10 +99,24 @@ footer {
   line-height: 1;
 }
 #temp {
+  display: inline-block;
   font-family: "IBM Plex Sans Condensed", sans-serif;
-  font-size: clamp(10rem,30vw,20rem);
+  font-size: clamp(8rem,30vw,20rem);
   font-weight: bold;
   line-height: 1;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 clamp(2rem,7vw,4rem);
+  position: relative;
+  width: auto;
+}
+#temp::after {
+  content: "˚";
+  font-size: 50%;
+  line-height: 1;
+  position: absolute;
+  right: 0;
+  top: 16%;
 }
 .hilow {
   align-items: center;
@@ -100,7 +134,6 @@ aside#settings {
   -webkit-backdrop-filter: blur(3px);
   background-color:hsla(215,40%,90%,0.95);
   border-left: 1px hsla(215,0%,0%,0.1) solid;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.15);
   box-sizing: border-box;
   height: 100vh;
   position: fixed;
@@ -110,6 +143,7 @@ aside#settings {
   width: 80vw;
 }
 aside#settings.open {
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.15);
   right: 0;
 }
 body.night {
@@ -145,4 +179,10 @@ body.night aside#settings {
   background-color: hsla(215,40%,20%,0.95);
   border-left: 1px hsla(215,0%,100%,0.1) solid;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.5);
+}
+
+@keyframes loading {
+  to {
+    background-position: 200% 0, center top, center 2.75rem, center clamp(4.75rem,calc(6vw + 2.75rem),6.75rem), center bottom;
+  }
 }
