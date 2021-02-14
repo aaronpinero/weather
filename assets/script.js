@@ -4,6 +4,8 @@ const status_display = document.querySelector('#status');
 const location_display = document.querySelector('#location');
 const time_display = document.querySelector('#time');
 const temp_display = document.querySelector('#temp');
+const temp_low_display = document.querySelector('#temp-low');
+const temp_high_display = document.querySelector('#temp-high');
 const weather_description = document.querySelector('#weather-description');
 
 const default_unit = "imperial";
@@ -71,6 +73,8 @@ function process_weather() {
       let longitude = localStorage.getItem('userlon');
       let response = JSON.parse(weatherRequest.responseText);
       let temp = Math.round(response.main.temp);
+      let temp_low = Math.round(response.main.temp_min);
+      let temp_high = Math.round(response.main.temp_max);
       let location = response.name;
       let desc = response.weather[0].main;
       let time = format_time(response.dt);
@@ -81,7 +85,9 @@ function process_weather() {
       status_display.textContent = '';
       location_display.textContent = location;
       location_display.href = location_link;
-      temp_display.textContent = `${temp}`;
+      temp_display.textContent = temp;
+      temp_low_display.textContent = temp_low;
+      temp_high_display.textContent = temp_high;
       time_display.textContent = time;
       weather_description.textContent = desc;
       

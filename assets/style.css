@@ -61,6 +61,7 @@ body.icon-50d::before { /* fog */
 }
 a {
   color: hsl(215,80%,40%);
+  text-decoration: none;
 }
 header {
   border-bottom: 1px solid hsla(215,0%,0%,0.1);
@@ -68,21 +69,30 @@ header {
 footer {
   border-top: 1px solid hsla(215,0%,0%,0.1);
 }
-#message {
+#output {
   text-align: center;
+}
+#message {
   font-size: 1.125rem;
 }
 #weather-description {
-  font-family: "League Gothic", sans-serif;
   font-size: clamp(2rem,6vw,4rem);
   line-height: 1;
-  text-align: center;
 }
 #temp {
   font-family: "League Gothic", sans-serif;
   font-size: clamp(10rem,30vw,20rem);
   line-height: 1;
-  text-align: center;
+}
+.hilow {
+  align-items: center;
+  display:flex;
+  justify-content: center;
+}
+#temp-high,
+#temp-low {
+  font-family: "League Gothic", sans-serif;
+  font-size: 1.75rem;
 }
 aside#settings {
   backdrop-filter: blur(3px);
