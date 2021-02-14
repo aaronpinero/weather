@@ -6,7 +6,7 @@ body {
 }
 body::before {
   color: hsla(215,60%,80%,0.33);
-  content: "\f744";
+  content: "";
   display: block;
   font-family: 'Font Awesome 5 Pro';
   font-size: 60vw;
@@ -18,6 +18,46 @@ body::before {
   top: 5vh;
   width: 100%;
   z-index: -1;
+}
+body.icon-01d::before { /* clear day */
+  content: "\f185";
+}
+body.icon-01n::before { /* clear night */
+  content: "\f755";
+}
+body.icon-02d::before { /* few clouds day */
+  content: "\f6c4";
+}
+body.icon-02n::before { /* few clouds night */
+  content: "\f6c3";
+}
+body.icon-03n::before,
+body.icon-03d::before { /* clouds */
+  content: "\f0c2";
+}
+body.icon-04n::before,
+body.icon-04d::before { /* broken clouds */
+  content: "\f744";
+}
+body.icon-09n::before,
+body.icon-09d::before { /* shower rain */
+  content: "\f73f";
+}
+body.icon-10n::before,
+body.icon-10d::before { /* rain */
+  content: "\f740";
+}
+body.icon-11n::before,
+body.icon-11d::before { /* thunderstorm */
+  content: "\f76c";
+}
+body.icon-13n::before,
+body.icon-13d::before { /* snow */
+  content: "\f7cf";
+}
+body.icon-50n::before,
+body.icon-50d::before { /* fog */
+  content: "\f74e";
 }
 a {
   color: hsl(215,80%,40%);
@@ -64,6 +104,9 @@ aside#settings.open {
 body.night {
   background-color: hsl(215,40%,15%);
   color: white;
+}
+body.night::before {
+  color: hsla(215,60%,80%,0.1);
 }
 body.night input[type="text"] {
   background-color: hsla(215,0%,100%,0.1);

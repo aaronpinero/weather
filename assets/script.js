@@ -74,6 +74,7 @@ function process_weather() {
       let location = response.name;
       let desc = response.weather[0].main;
       let time = format_time(response.dt);
+      let icon_code = response.weather[0].icon;
       let location_link = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
       
       // update display
@@ -95,6 +96,9 @@ function process_weather() {
       else {
         document.getElementsByTagName('body').item(0).classList.remove('night');
       }
+      
+      // Set icon through style.
+      document.getElementsByTagName('body').item(0).classList.add('icon-'+icon_code);
     }
     else {
       status_display.textContent = `Failed Request: ${weatherRequest.status}`;
