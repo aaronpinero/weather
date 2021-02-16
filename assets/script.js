@@ -1,5 +1,6 @@
 // Identify page elements.
 const key_input = document.querySelector('#apikey');
+const geo_key_input = document.querySelector('#geocodekey');
 const location_display = document.querySelector('#location');
 const time_display = document.querySelector('#time');
 const temp_display = document.querySelector('#temp');
@@ -9,14 +10,16 @@ const weather_description = document.querySelector('#weather-description');
 
 const default_unit = "imperial";
 var weatherRequest;
+var reverseGeocodeRequest;
 
-function get_location() {
+function get_latlong() {
   // Handler for successful use of the Geolocation API.
   function success(position) {
     // Save the location information in local storage.
     localStorage.setItem('userlat',position.coords.latitude);
     localStorage.setItem('userlon',position.coords.longitude);
-    // Now get the weather.
+    // Get data based on saved location.
+    get_reverse_geocode();
     get_weather();
   }
   // Handler for unsuccessful use of the Geolocation API.
@@ -26,6 +29,8 @@ function get_location() {
   
   // Check if location information is already stored.
   if (localStorage.getItem('userlat') && localStorage.getItem('userlon')) {
+    // Get data based on saved location.
+    get_reverse_geocode();
     get_weather();
   }
   else {
@@ -35,6 +40,44 @@ function get_location() {
     }
     else {
       navigator.geolocation.getCurrentPosition(success,error);
+    }
+  }
+}
+
+function get_reverse_geocode() {
+  console.log('called');
+  if (!localStorage.getItem('geocodeapikey')) {
+    window.alert("Need LocationIQ API key.");
+    return false;
+  }
+  if (!localStorage.getItem('userlat') || !localStorage.getItem('userlon')) {
+    window.alert("Need location information.");
+    return false;
+  }
+  
+  let latitude  = localStorage.getItem('userlat');
+  let longitude = localStorage.getItem('userlon');
+  let geokey = localStorage.getItem('geocodeapikey');
+  let geocodelink = `https://us1.locationiq.com/v1/reverse.php?key=${geokey}&lat=${latitude}&lon=${longitude}&format=json`;
+  console.log(geocodelink);
+    
+  reverseGeocodeRequest = new XMLHttpRequest();
+  reverseGeocodeRequest.onreadystatechange = process_reverse_geocode;
+  reverseGeocodeRequest.open('GET',geocodelink);
+  reverseGeocodeRequest.send();
+}
+
+function process_reverse_geocode() {
+  if (reverseGeocodeRequest.readyState === XMLHttpRequest.DONE) {
+    if (reverseGeocodeRequest.status === 200) {
+      localStorage.setItem('geocoderesponse',reverseGeocodeRequest.responseText);
+      let response = JSON.parse(reverseGeocodeRequest.responseText);
+      
+      // update display
+      location_display.textContent = response.address.city;
+    }
+    else {
+      window.alert(`Failed Geocode Request: ${reverseGeocodeRequest.status}`);
     }
   }
 }
@@ -55,7 +98,7 @@ function get_weather() {
   let longitude = localStorage.getItem('userlon');
   let units = localStorage.getItem('userunit');
   let apikey = localStorage.getItem('weatherapikey');
-  let weatherlink = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apikey}`;
+  let weatherlink = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apikey}`;
     
   weatherRequest = new XMLHttpRequest();
   weatherRequest.onreadystatechange = process_weather;
@@ -67,30 +110,19 @@ function process_weather() {
   if (weatherRequest.readyState === XMLHttpRequest.DONE) {
     if (weatherRequest.status === 200) {
       localStorage.setItem('weatherresponse',weatherRequest.responseText);
-      let latitude  = localStorage.getItem('userlat');
-      let longitude = localStorage.getItem('userlon');
       let response = JSON.parse(weatherRequest.responseText);
-      let temp = Math.round(response.main.temp);
-      let temp_low = Math.round(response.main.temp_min);
-      let temp_high = Math.round(response.main.temp_max);
-      let location = response.name;
-      let desc = response.weather[0].main;
-      let time = format_time(response.dt);
-      let icon_code = response.weather[0].icon;
-      let location_link = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
       
       // update display
-      location_display.textContent = location;
-      location_display.href = location_link;
-      temp_display.textContent = temp;
-      temp_low_display.textContent = `${temp_low}˚`;
-      temp_high_display.textContent = `${temp_high}˚`;
-      time_display.textContent = time;
-      weather_description.textContent = desc;
+      location_display.href = `https://www.openstreetmap.org/#map=18/${response.lat}/${response.lon}`;
+      temp_display.textContent = Math.round(response.current.temp);
+      temp_low_display.textContent = `${Math.round(response.daily[0].temp.min)}˚`;
+      temp_high_display.textContent = `${Math.round(response.daily[0].temp.max)}˚`;
+      time_display.textContent = format_time(response.current.dt);
+      weather_description.textContent = response.current.weather[0].main;
       
       // Is it day or night?
       let day = true;
-      if (response.dt < response.sys.sunrise || response.dt > response.sys.sunset) {
+      if (response.current.dt < response.daily[0].sunrise || response.current.dt > response.daily[0].sunset) {
         day = false;
       }
       if (!day) {
@@ -101,7 +133,7 @@ function process_weather() {
       }
       
       // Set icon through style
-      document.getElementsByTagName('body').item(0).setAttribute('data-icon',icon_code);
+      document.getElementsByTagName('body').item(0).setAttribute('data-icon',response.current.weather[0].icon);
       
       // Finish loading.
       document.querySelector('#output').classList.remove('loading');
@@ -135,6 +167,16 @@ function set_key(e) {
   let key = key_input.value;
   if (key != '') {
     localStorage.setItem('weatherapikey',key);
+    get_latlong();
+  }
+}
+
+function set_geo_key(e) {
+  e.preventDefault();
+  let key = geo_key_input.value;
+  if (key != '') {
+    localStorage.setItem('geocodeapikey',key);
+    get_latlong();
   }
 }
 
@@ -187,6 +229,7 @@ function open_settings(e) {
 
 document.querySelector('#get-weather').addEventListener('click', get_weather);
 document.querySelector('#apikey-set').addEventListener('click', set_key);
+document.querySelector('#geocodekey-set').addEventListener('click', set_geo_key);
 document.querySelector('#clear-info').addEventListener('click', clear_info);
 document.querySelector('#fahrenheit').addEventListener('input', set_units);
 document.querySelector('#celsius').addEventListener('input', set_units);
@@ -203,7 +246,8 @@ else {
 }
 
 // If there is an API key set, get the weather.
-if (localStorage.getItem('weatherapikey')) {
+if (localStorage.getItem('weatherapikey') && localStorage.getItem('geocodeapikey')) {
   key_input.value = localStorage.getItem('weatherapikey');
-  get_location();
+  geo_key_input.value = localStorage.getItem('geocodeapikey');
+  get_latlong();
 }

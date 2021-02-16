@@ -12,3 +12,5 @@ In this project I am working to create a web-based weather app as a learning exe
 - [US Zip Code Latitude and Longitude](https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/api/)
 - [LocationIQ](https://locationiq.com)
 - [OpenWeather](https://openweathermap.org)
+- [Epoch Converter](https://www.epochconverter.com)
+- [JSONLint](https://jsonlint.com)
