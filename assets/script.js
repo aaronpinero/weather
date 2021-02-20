@@ -1,12 +1,12 @@
 // Identify page elements.
-const key_input = document.querySelector('#apikey');
-const geo_key_input = document.querySelector('#geocodekey');
-const location_display = document.querySelector('#location');
-const time_display = document.querySelector('#time');
-const temp_display = document.querySelector('#temp');
-const temp_low_display = document.querySelector('#temp-low');
-const temp_high_display = document.querySelector('#temp-high');
-const weather_description = document.querySelector('#weather-description');
+const weather_api_key_input = document.querySelector('#weather-api-key');
+const geocode_api_key_input = document.querySelector('#geocode-api-key');
+const location_display = document.querySelector('#ark-location');
+const request_time_display = document.querySelector('#ark-request-time');
+const current_temp_display = document.querySelector('#ark-current-temp');
+const current_temp_low_display = document.querySelector('#ark-current-temp-low');
+const current_temp_high_display = document.querySelector('#ark-current-temp-high');
+const current_description = document.querySelector('#ark-current-description');
 
 const default_unit = "imperial";
 var weatherRequest;
@@ -18,6 +18,9 @@ function get_latlong() {
     // Save the location information in local storage.
     localStorage.setItem('userlat',position.coords.latitude);
     localStorage.setItem('userlon',position.coords.longitude);
+    // display the values
+    document.querySelector('#location-lat').value = position.coords.latitude;
+    document.querySelector('#location-lon').value = position.coords.longitude;
     // Get data based on saved location.
     get_reverse_geocode();
     get_weather();
@@ -25,10 +28,15 @@ function get_latlong() {
   // Handler for unsuccessful use of the Geolocation API.
   function error() {
     window.alert('Unable to retrieve your location');
+    document.querySelector('#location-lat').value = '';
+    document.querySelector('#location-lon').value = '';
   }
   
   // Check if location information is already stored.
   if (localStorage.getItem('userlat') && localStorage.getItem('userlon')) {
+    // display the values
+    document.querySelector('#location-lat').value = localStorage.getItem('userlat');
+    document.querySelector('#location-lon').value = localStorage.getItem('userlon');
     // Get data based on saved location.
     get_reverse_geocode();
     get_weather();
@@ -45,7 +53,6 @@ function get_latlong() {
 }
 
 function get_reverse_geocode() {
-  console.log('called');
   if (!localStorage.getItem('geocodeapikey')) {
     window.alert("Need LocationIQ API key.");
     return false;
@@ -59,7 +66,6 @@ function get_reverse_geocode() {
   let longitude = localStorage.getItem('userlon');
   let geokey = localStorage.getItem('geocodeapikey');
   let geocodelink = `https://us1.locationiq.com/v1/reverse.php?key=${geokey}&lat=${latitude}&lon=${longitude}&format=json`;
-  console.log(geocodelink);
     
   reverseGeocodeRequest = new XMLHttpRequest();
   reverseGeocodeRequest.onreadystatechange = process_reverse_geocode;
@@ -91,7 +97,7 @@ function get_weather() {
     window.alert("Need location information.");
     return false;
   }
-  document.querySelector('#output').classList.add('loading');
+  document.querySelector('body').classList.add('loading');
   document.getElementsByTagName('body').item(0).setAttribute('data-icon','');
   
   let latitude  = localStorage.getItem('userlat');
@@ -113,12 +119,11 @@ function process_weather() {
       let response = JSON.parse(weatherRequest.responseText);
       
       // update display
-      location_display.href = `https://www.openstreetmap.org/#map=18/${response.lat}/${response.lon}`;
-      temp_display.textContent = Math.round(response.current.temp);
-      temp_low_display.textContent = `${Math.round(response.daily[0].temp.min)}˚`;
-      temp_high_display.textContent = `${Math.round(response.daily[0].temp.max)}˚`;
-      time_display.textContent = format_time(response.current.dt);
-      weather_description.textContent = response.current.weather[0].main;
+      current_temp_display.textContent = Math.round(response.current.temp);
+      current_temp_low_display.textContent = `${Math.round(response.daily[0].temp.min)}˚`;
+      current_temp_high_display.textContent = `${Math.round(response.daily[0].temp.max)}˚`;
+      request_time_display.textContent = format_time(response.current.dt);
+      current_description.textContent = response.current.weather[0].main;
       
       // Is it day or night?
       let day = true;
@@ -135,8 +140,19 @@ function process_weather() {
       // Set icon through style
       document.getElementsByTagName('body').item(0).setAttribute('data-icon',response.current.weather[0].icon);
       
+      // Daily forecast.
+      var daily = response.daily;
+      var x;
+      for (x=1;x<daily.length;x++) {
+        var desc = daily[x].weather[0].main;
+        var high = Math.round(daily[x].temp.max);
+        var low = Math.round(daily[x].temp.min);
+        var date = format_day(daily[x].dt);
+        console.log(`${date}: ${desc}, high ${high}, low ${low}`);
+      }
+      
       // Finish loading.
-      document.querySelector('#output').classList.remove('loading');
+      document.querySelector('body').classList.remove('loading');
     }
     else {
       window.alert(`Failed Request: ${weatherRequest.status}`);
@@ -156,24 +172,36 @@ function format_time(t) {
   return time;
 }
 
+function format_day(t) {
+  let d = new Date(t * 1000);
+  var options = {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'America/New_York'
+  };
+  let d_formatted = new Intl.DateTimeFormat('us-EN', options).format(d);
+  return d_formatted;
+}
+
 function clear_info() {
   localStorage.clear();
   localStorage.setItem('userunit','metric');
   document.querySelector('input[value="metric"]').checked = true;
 }
 
-function set_key(e) {
+function set_weather_api_key(e) {
   e.preventDefault();
-  let key = key_input.value;
+  let key = weather_api_key_input.value;
   if (key != '') {
     localStorage.setItem('weatherapikey',key);
     get_latlong();
   }
 }
 
-function set_geo_key(e) {
+function set_geocode_api_key(e) {
   e.preventDefault();
-  let key = geo_key_input.value;
+  let key = geocode_api_key_input.value;
   if (key != '') {
     localStorage.setItem('geocodeapikey',key);
     get_latlong();
@@ -227,9 +255,9 @@ function open_settings(e) {
   document.querySelector('#close-settings').addEventListener('click',close_settings_button);
 }
 
-document.querySelector('#get-weather').addEventListener('click', get_weather);
-document.querySelector('#apikey-set').addEventListener('click', set_key);
-document.querySelector('#geocodekey-set').addEventListener('click', set_geo_key);
+document.querySelector('#ark-get-weather').addEventListener('click', get_weather);
+document.querySelector('#weather-api-key-set').addEventListener('click', set_weather_api_key);
+document.querySelector('#geocode-api-key-set').addEventListener('click', set_geocode_api_key);
 document.querySelector('#clear-info').addEventListener('click', clear_info);
 document.querySelector('#fahrenheit').addEventListener('input', set_units);
 document.querySelector('#celsius').addEventListener('input', set_units);
@@ -247,7 +275,7 @@ else {
 
 // If there is an API key set, get the weather.
 if (localStorage.getItem('weatherapikey') && localStorage.getItem('geocodeapikey')) {
-  key_input.value = localStorage.getItem('weatherapikey');
-  geo_key_input.value = localStorage.getItem('geocodeapikey');
+  weather_api_key_input.value = localStorage.getItem('weatherapikey');
+  geocode_api_key_input.value = localStorage.getItem('geocodeapikey');
   get_latlong();
 }

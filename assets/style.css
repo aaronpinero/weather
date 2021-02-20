@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=IBM+Plex+Sans+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+:root {
+  --fs-base: 1rem;
+  --fs-scale: 1.25;
+  --fs-sm: 0.8rem;
+  --fs-step-1: 1.25rem;
+  --fs-step-2: 1.56rem;
+  --fs-step-3: 1.95rem;
+  --fs-step-4: 2.44rem;
+  --fs-step-5: 3.05rem;
+  --fs-step-6: 3.81rem;
+  --fs-step-7: 4.77rem;
+}
 body {
   font-family: "IBM Plex Sans", sans-serif;
   background-color:hsl(215,40%,92%);
@@ -9,7 +21,7 @@ body::before {
   content: "";
   display: block;
   font-family: 'Font Awesome 5 Pro';
-  font-size: 60vw;
+  font-size: min(60vw,25em);
   font-weight: 100;
   left: 0;
   line-height: 1;
@@ -33,7 +45,7 @@ body[data-icon="02n"]::before { /* few clouds night */
 }
 body[data-icon="03n"]::before,
 body[data-icon="03d"]::before { /* clouds */
-  content: "\f0c2";
+  content: "\f744";
 }
 body[data-icon="04n"]::before,
 body[data-icon="04d"]::before { /* broken clouds */
@@ -69,66 +81,70 @@ header {
 footer {
   border-top: 1px solid hsla(215,0%,0%,0.1);
 }
-#output {
-  text-align: center;
+.text-sm {
+  font-size: var(--fs-sm);
 }
-#output > * {
-  opacity: 1;
-  transition: opacity 0.25s;
-}
-#output.loading {
-  animation: loading 2s infinite;
-  background-image:
-    linear-gradient(100deg, hsla(215,60%,95%,0) 35%, hsla(215,60%,95%,0.5) 50%, hsla(215,60%,95%,0) 65%),
-    linear-gradient(hsla(215,60%,88%) 1.75rem, transparent 0),
-    linear-gradient(hsla(215,60%,88%) clamp(2rem,6vw,4rem), transparent 0),
-    linear-gradient(hsla(215,60%,88%) clamp(10rem,30vw,20rem), transparent 0),
-    linear-gradient(hsla(215,60%,88%) 2.5rem, transparent 0);
-  background-size: 50% 100%, min(360px,100%) 1.75rem, min(160px,100%) clamp(2rem,6vw,4rem), min(200px,100%) clamp(8rem,30vw,20rem), min(240px,100%) 2.5rem;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  background-position: -200% 0, center top, center 2.75rem, center clamp(4.75rem,calc(6vw + 2.75rem),6.75rem), center bottom;
-}
-#output.loading > * {
-  opacity: 0;
-}
-#message {
-  font-size: 1.125rem;
-}
-#weather-description {
-  font-size: clamp(2rem,6vw,4rem);
+#ark-location {
+  font-size: clamp(var(--fs-step-1),calc(1.09rem + 0.775vw),var(--fs-step-2));
   line-height: 1;
 }
-#temp {
-  display: inline-block;
-  font-family: "IBM Plex Sans Condensed", sans-serif;
-  font-size: clamp(8rem,30vw,20rem);
-  font-weight: bold;
+#ark-current-description {
+  font-size: clamp(var(--fs-step-2),calc(1.365rem + 0.975vw),var(--fs-step-3));
   line-height: 1;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 clamp(2rem,7vw,4rem);
+}
+#ark-current-temp {
+  box-sizing: border-box;
+  font-size: clamp(var(--fs-step-5),calc(2.19rem + 4.3vw),var(--fs-step-7));
+  line-height: 1;
+  padding-left: 1ch;
+  padding-right: 1ch;
   position: relative;
-  width: auto;
+  width: 4ch;
 }
-#temp::after {
+#ark-current-temp::after {
   content: "˚";
-  font-size: 50%;
+  font-size: 75%;
   line-height: 1;
   position: absolute;
-  right: 0;
+  right: 0.5ch;
   top: 16%;
 }
-.hilow {
-  align-items: center;
-  display:flex;
-  justify-content: center;
+#ark-current-temp-high,
+#ark-current-temp-low {
+  font-size: clamp(var(--fs-step-1),calc(1.09rem + 0.775vw),var(--fs-step-2));
+  line-height: 1;
 }
-#temp-high,
-#temp-low {
-  font-family: "IBM Plex Sans Condensed", sans-serif;
-  font-size: 1.75rem;
-  font-weight: bold;
+
+body.loading .ark-data-skeleton {
+  animation: loading 2s infinite;
+  background-color: hsl(215,60%,88%);
+  background-image: linear-gradient(100deg, hsla(215,60%,95%,0) 35%, hsla(215,60%,95%,0.5) 50%, hsla(215,60%,95%,0) 65%);
+  background-position: -200% 0;
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+  color: transparent !important;
+  margin-left: auto;
+  margin-right: auto;
 }
+body.loading .ark-data-skeleton#ark-location {
+  max-width: 12ch;
+}
+body.loading .ark-data-skeleton#ark-current-description {
+  max-width: 12ch;
+}
+body.loading .ark-data-skeleton#ark-current-temp {
+  max-width: 2ch;
+}
+body.loading .ark-data-skeleton#ark-current-hilow {
+  max-width: 15ch;
+}
+body.loading .ark-data-skeleton#ark-status {
+  max-width: 20ch;
+}
+body.loading #ark-get-weather {
+  display: none;
+}
+
 aside#settings {
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
@@ -146,6 +162,7 @@ aside#settings.open {
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.15);
   right: 0;
 }
+
 body.night {
   background-color: hsl(215,40%,15%);
   color: white;
@@ -183,6 +200,6 @@ body.night aside#settings {
 
 @keyframes loading {
   to {
-    background-position: 200% 0, center top, center 2.75rem, center clamp(4.75rem,calc(6vw + 2.75rem),6.75rem), center bottom;
+    background-position: 200% 0;
   }
 }

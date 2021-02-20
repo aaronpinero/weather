@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,46 +16,71 @@
           <button class="btn btn-outline-primary border-0" id="open-settings"><i class="fal fa-cog fa-fw fa-lg"></i><span class="sr-only">Settings</span></button>
         </div>
       </header>
+      
+      <!-- START WEATHER DISPALY -->
       <main class="row my-5">
         <div class="col px-4">
-          <div id="output" class="mb-3">
-            <div id="message" class="mb-3">Weather in <a id="location" target="_blank" class="border-bottom border-2 border-primary">[Loading]</a> as of <span id="time">[Loading]</span> <button class="btn btn-sm btn-outline-primary border-0 align-top" id="get-weather"><i class="far fa-redo"></i><span class="sr-only">Get my weather</span></button></div>
-            <div id="weather-description">&nbsp;</div>
-            <div id="temp">&nbsp;</div>
-            <div class="hilow">
-              <span class="me-2">Low:</span>
-              <span id="temp-low">&nbsp;</span>
+          
+          <!-- START CURRENT CONDITIONS -->
+          <div id="ark-location" class="ark-data-skeleton my-3 text-center">&nbsp;</div>
+          <div id="ark-current-description" class="ark-data-skeleton my-3 text-center">&nbsp;</div>
+          <div id="ark-current-temp" class="ark-data-skeleton my-3 mx-auto text-center">&nbsp;</div>
+          <div class="text-center my-3">
+            <div id="ark-current-hilow" class="ark-data-skeleton d-inline-flex align-items-center justify-content-around">
+              <span class="me-2">Low: </span>
+              <span id="ark-current-temp-low">&nbsp;</span>
               <span class="ms-4 me-2">High: </span>
-              <span id="temp-high">&nbsp;</span>
+              <span id="ark-current-temp-high">&nbsp;</span>
             </div>
           </div>
+          <div id="ark-status" class="ark-data-skeleton text-sm text-center text-muted my-3">
+            Last updated
+            <span id="ark-request-time">&nbsp;</span>
+            <button class="btn btn-sm btn-outline-primary border-0 align-middle" id="ark-get-weather">
+              <i class="far fa-redo"></i>
+              <span class="sr-only">Update Weather</span>
+            </button>
+          </div>
+          <!-- END CURRENT CONDITIONS -->
+
+          <!-- START DAILY FORECAST -->
+          <div id="ark-daily-forecast">
+          </div>
+          <!-- END DAILY FORECAST -->
+
         </div>
       </main>
+      <!-- END SETTINGS PANEL -->
+      
+      <!-- START SETTINGS PANEL -->
       <aside id="settings" class="container-fluid">
         <header class="row">
           <div class="col py-3 px-4 d-flex justify-content-between align-items-center">
             <h1 class="m-0 fs-3">Settings</h1>
-            <button class="btn btn-outline-primary border-0" id="close-settings"><i class="fal fa-times fa-fw fa-lg"></i><span class="sr-only">Close Settings</span></button>
+            <button class="btn btn-outline-primary border-0" id="close-settings">
+              <i class="fal fa-times fa-fw fa-lg"></i>
+              <span class="sr-only">Close Settings</span>
+            </button>
           </div>
         </header>
         <div class="row">
           <div class="col px-4">
             <form id="settings">
               <div class="row my-3">
-                <label for="apikey" class="col-sm-5 col-form-label">Weather API Key</label>
+                <label for="weather-api-key" class="col-sm-5 col-form-label">Weather API Key</label>
                 <div class="col-sm-7">
                   <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" id="apikey" name="apikey" size="15">
-                    <button class="btn btn-outline-primary" id="apikey-set">Set</button>
+                    <input type="text" class="form-control" id="weather-api-key" name="weather-api-key" size="15">
+                    <button class="btn btn-outline-primary" id="weather-api-key-set">Set</button>
                   </div>
                 </div>
               </div>
               <div class="row my-3">
-                <label for="apikey" class="col-sm-5 col-form-label">LocationIQ API Key</label>
+                <label for="geocode-api-key" class="col-sm-5 col-form-label">LocationIQ API Key</label>
                 <div class="col-sm-7">
                   <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" id="geocodekey" name="geocodekey" size="15">
-                    <button class="btn btn-outline-primary" id="geocodekey-set">Set</button>
+                    <input type="text" class="form-control" id="geocode-api-key" name="geocode-api-key" size="15">
+                    <button class="btn btn-outline-primary" id="geocode-api-key-set">Set</button>
                   </div>
                 </div>
               </div>
@@ -76,9 +100,9 @@
                 <div class="col-sm-7">
                   <div class="input-group input-group-sm">
                     <span class="input-group-text">Lat</span>
-                    <input type="text" class="form-control" id="location_lat" name="location_lat" size="15">
+                    <input type="text" class="form-control" id="location-lat" name="location-lat" size="15">
                     <span class="input-group-text">Lon</span>
-                    <input type="text" class="form-control" id="location_lon" name="location_lon" size="15">
+                    <input type="text" class="form-control" id="location-lon" name="location-lon" size="15">
                   </div>
                 </div>
               </div>
@@ -92,6 +116,8 @@
           </div>
         </div>
       </aside>
+      <!-- END SETTINGS PANEL -->
+
     </div>
     <script src="./assets/script.js"></script>
   </body>
