@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans&display=swap');
 :root {
   --fs-base: 1rem;
   --fs-scale: 1.25;
@@ -15,9 +15,13 @@
   --color-day-fg: hsl(215,40%,8%);
   --color-day-light: hsl(215,40%,88%);
   --color-day-link: hsl(215,80%,40%);
+  
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-icon: 'Font Awesome 5 Pro';
 }
 body {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--color-day-bg);
   color: var(--color-day-fg);
 }
@@ -25,7 +29,7 @@ body::before {
   color: var(--color-day-light);
   content: "";
   display: block;
-  font-family: 'Font Awesome 5 Pro';
+  font-family: var(--font-icon);
   font-size: min(60vw,25em);
   font-weight: 100;
   left: 0;
@@ -96,6 +100,7 @@ header {
 }
 #ark-current-temp {
   box-sizing: border-box;
+  font-family: var(--font-mono);
   font-size: clamp(var(--fs-step-5),calc(2.19rem + 4.3vw),var(--fs-step-7));
   line-height: 1;
   padding-left: 1ch;
@@ -113,6 +118,7 @@ header {
 }
 #ark-current-temp-high,
 #ark-current-temp-low {
+  font-family: var(--font-mono);
   font-size: clamp(var(--fs-step-1),calc(1.09rem + 0.775vw),var(--fs-step-2));
   line-height: 1;
 }
@@ -179,10 +185,10 @@ aside#settings.open {
   align-items: center;
   border-top: 1px var(--color-day-light) solid;
   display: flex;
+  font-family: var(--font-mono);;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 30ch;
-  padding: 0.25rem 0;
+  max-width: 40ch;
 }
 #ark-daily-forecast .ark-daily-high,
 #ark-daily-forecast .ark-daily-low {
@@ -191,25 +197,27 @@ aside#settings.open {
 }
 #ark-daily-forecast .ark-daily-pop {
   text-align: right;
-  width: 5ch;
+  width: 4ch;
 }
 #ark-daily-forecast .ark-daily-date {
+  font-size: var(--fs-sm);
   text-align: left;
-  width: 5ch;
+  text-transform: uppercase;
+  width: 4ch;
 }
 #ark-daily-forecast .ark-daily-desc {
   overflow: hidden;
   white-space: nowrap;
-  width: 3rem;
+  width: 2rem;
 }
 #ark-daily-forecast .ark-daily-desc::before {
   content: "";
   display: inline-block;
-  font-family: 'Font Awesome 5 Pro';
+  font-family: var(--font-icon);
   font-size: clamp(var(--fs-step-1),calc(1.09rem + 0.775vw),var(--fs-step-2));
   font-weight: 100;
   text-align: center;
-  width: 3rem;
+  width: 2rem;
 }
 #ark-daily-forecast .ark-daily-desc[data-icon="01d"]::before { /* clear day */
   content: "\f185";

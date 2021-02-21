@@ -145,7 +145,7 @@ function process_weather() {
       var daily = response.daily;
       var x;
       for (x=1;x<daily.length;x++) {
-        daily_code += '<li>';
+        daily_code += '<li class="px-4 py-2">';
         daily_code += `<span class="ark-daily-date">${format_day(daily[x].dt)}</span>`;
         daily_code += `<span class="ark-daily-desc" data-icon="${daily[x].weather[0].icon}">${daily[x].weather[0].main}</span>`;
         daily_code += `<span class="ark-daily-pop">${Math.round(daily[x].pop * 100)}%</span>`;
