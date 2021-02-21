@@ -141,15 +141,20 @@ function process_weather() {
       document.getElementsByTagName('body').item(0).setAttribute('data-icon',response.current.weather[0].icon);
       
       // Daily forecast.
+      var daily_code = '<h2 class="text-center my-3">Next 7 Days</h2><ul class="text-center mx-0 my-3 p-0">';
       var daily = response.daily;
       var x;
       for (x=1;x<daily.length;x++) {
-        var desc = daily[x].weather[0].main;
-        var high = Math.round(daily[x].temp.max);
-        var low = Math.round(daily[x].temp.min);
-        var date = format_day(daily[x].dt);
-        console.log(`${date}: ${desc}, high ${high}, low ${low}`);
+        daily_code += '<li>';
+        daily_code += `<span class="ark-daily-date">${format_day(daily[x].dt)}</span>`;
+        daily_code += `<span class="ark-daily-desc" data-icon="${daily[x].weather[0].icon}">${daily[x].weather[0].main}</span>`;
+        daily_code += `<span class="ark-daily-pop">${Math.round(daily[x].pop * 100)}%</span>`;
+        daily_code += `<span class="ark-daily-high">${Math.round(daily[x].temp.max)}˚</span>`;
+        daily_code += `<span class="ark-daily-low">${Math.round(daily[x].temp.min)}˚</span>`;
+        daily_code += '</li>';
       }
+      daily_code += '</ul>';
+      document.querySelector('#ark-daily-forecast').innerHTML = daily_code;
       
       // Finish loading.
       document.querySelector('body').classList.remove('loading');
@@ -176,8 +181,8 @@ function format_day(t) {
   let d = new Date(t * 1000);
   var options = {
     weekday: 'short',
-    month: 'short',
-    day: 'numeric',
+    // month: 'short',
+    // day: 'numeric',
     timeZone: 'America/New_York'
   };
   let d_formatted = new Intl.DateTimeFormat('us-EN', options).format(d);
