@@ -1,0 +1,38 @@
+body.night {
+  background-color: hsl(215,40%,15%);
+  color: white;
+}
+body.night::before {
+  color: hsla(215,60%,80%,0.1);
+}
+body.night input[type="text"] {
+  background-color: hsla(215,0%,100%,0.1);
+  border-color: hsla(215,0%,100%,0.25);
+  color: white;
+}
+body.night a {
+  color: hsl(215,80%,65%);
+}
+body.night header {
+  border-bottom: 1px solid hsla(215,0%,100%,0.1);
+}
+body.night footer {
+  border-top: 1px solid hsla(215,0%,100%,0.1);
+}
+body.night .btn-outline-primary {
+  color: hsl(215,80%,65%);
+  border-color: hsl(215,80%,65%);
+}
+body.night .btn-outline-primary:hover {
+  color: white;
+  border-color: var(--bs-blue);
+}
+body.night aside#settings {
+  background-color: hsla(215,40%,20%,0.95);
+  border-left: 1px hsla(215,0%,100%,0.1) solid;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.5);
+}
+body.night.loading .ark-data-skeleton {
+  background-color: hsla(215,60%,80%,0.2);
+  background-image: linear-gradient(90deg, hsla(215,60%,80%,0) 10%, hsla(215,60%,80%,0.2) 50%, hsla(215,60%,88%,0) 90%);
+}
