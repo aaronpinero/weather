@@ -7,6 +7,7 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css'>
     <link rel='stylesheet' href='./assets/fontawesome-subset/css/all.min.css'>
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/style.icons.css">
     <link rel="stylesheet" href="./assets/style.night.css">
   </head>
   <body>
@@ -35,7 +36,7 @@
                 <span id="ark-current-temp-high">&nbsp;</span>
               </div>
             </div>
-            <div id="ark-status" class="ark-data-skeleton text-sm text-center text-muted my-3">
+            <div id="ark-status" class="ark-data-skeleton text-sm text-center text-faded my-3">
               Last updated
               <span id="ark-request-time">&nbsp;</span>
               <button class="btn btn-sm btn-outline-primary border-0 align-middle" id="ark-get-weather">
@@ -46,6 +47,11 @@
           </div>
           <!-- END CURRENT CONDITIONS -->
 
+          <!-- START DAILY FORECAST -->
+          <div id="ark-hourly-forecast" class="mt-5 pb-3">
+          </div>
+          <!-- END DAILY FORECAST -->
+          
           <!-- START DAILY FORECAST -->
           <div id="ark-daily-forecast" class="mt-5">
           </div>

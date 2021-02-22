@@ -1,0 +1,42 @@
+[data-icon="01d"]::before { /* clear day */
+	content: "\f185";
+}
+[data-icon="01n"]::before { /* clear night */
+  content: "\f755";
+}
+[data-icon="02d"]::before { /* few clouds day */
+  content: "\f6c4";
+}
+[data-icon="02n"]::before { /* few clouds night */
+  content: "\f6c3";
+}
+[data-icon="03n"]::before,
+[data-icon="03d"]::before { /* clouds */
+  content: "\f744";
+}
+[data-icon="04n"]::before { /* broken clouds night */
+  content: "\f6c3";
+}
+[data-icon="04d"]::before { /* broken clouds day */
+  content: "\f6c4";
+}
+[data-icon="09n"]::before,
+[data-icon="09d"]::before { /* shower rain */
+  content: "\f73f";
+}
+[data-icon="10n"]::before,
+[data-icon="10d"]::before { /* rain */
+  content: "\f740";
+}
+[data-icon="11n"]::before,
+[data-icon="11d"]::before { /* thunderstorm */
+  content: "\f76c";
+}
+[data-icon="13n"]::before,
+[data-icon="13d"]::before { /* snow */
+  content: "\f7cf";
+}
+[data-icon="50n"]::before,
+[data-icon="50d"]::before { /* fog */
+  content: "\f74e";
+}

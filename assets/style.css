@@ -13,8 +13,15 @@
   
   --color-day-bg: hsl(215,40%,92%);
   --color-day-fg: hsl(215,40%,8%);
-  --color-day-light: hsl(215,40%,88%);
+  --color-day-faded: hsl(215,40%,50%);
+  --color-day-light: hsl(215,40%,85%);
   --color-day-link: hsl(215,80%,40%);
+  
+  --color-night-bg: hsl(215,40%,15%);
+  --color-night-fg: hsl(215,40%,95%);
+  --color-night-faded: hsl(215,40%,60%);
+  --color-night-light: hsla(215,40%,22%);
+  --color-night-link: hsl(215,80%,65%);
   
   --font-sans: "IBM Plex Sans", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
@@ -27,7 +34,6 @@ body {
 }
 body::before {
   color: var(--color-day-light);
-  content: "";
   display: block;
   font-family: var(--font-icon);
   font-size: min(60vw,25em);
@@ -40,46 +46,6 @@ body::before {
   width: 100%;
   z-index: -1;
 }
-body[data-icon="01d"]::before { /* clear day */
-  content: "\f185";
-}
-body[data-icon="01n"]::before { /* clear night */
-  content: "\f755";
-}
-body[data-icon="02d"]::before { /* few clouds day */
-  content: "\f6c4";
-}
-body[data-icon="02n"]::before { /* few clouds night */
-  content: "\f6c3";
-}
-body[data-icon="03n"]::before,
-body[data-icon="03d"]::before { /* clouds */
-  content: "\f744";
-}
-body[data-icon="04n"]::before,
-body[data-icon="04d"]::before { /* broken clouds */
-  content: "\f744";
-}
-body[data-icon="09n"]::before,
-body[data-icon="09d"]::before { /* shower rain */
-  content: "\f73f";
-}
-body[data-icon="10n"]::before,
-body[data-icon="10d"]::before { /* rain */
-  content: "\f740";
-}
-body[data-icon="11n"]::before,
-body[data-icon="11d"]::before { /* thunderstorm */
-  content: "\f76c";
-}
-body[data-icon="13n"]::before,
-body[data-icon="13d"]::before { /* snow */
-  content: "\f7cf";
-}
-body[data-icon="50n"]::before,
-body[data-icon="50d"]::before { /* fog */
-  content: "\f74e";
-}
 a {
   color: var(--color-day-link);
   text-decoration: none;
@@ -89,6 +55,9 @@ header {
 }
 .text-sm {
   font-size: var(--fs-sm);
+}
+.text-faded {
+  color: var(--color-day-faded);
 }
 #ark-location {
   font-size: clamp(var(--fs-step-1),calc(1.09rem + 0.775vw),var(--fs-step-2));
@@ -177,6 +146,50 @@ aside#settings.open {
   }
 }
 
+#ark-hourly-forecast {
+  overflow: auto;
+  width: 100%;
+}
+#ark-hourly-forecast ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+#ark-hourly-forecast li {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  text-align: center;
+}
+#ark-hourly-forecast li + li {
+  border-left: 1px solid var(--color-day-light);
+}
+#ark-hourly-forecast .ark-hourly-time {
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+}
+#ark-hourly-forecast .ark-hourly-pop {
+  color: var(--color-day-faded);
+}
+#ark-hourly-forecast .ark-hourly-desc {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0.25rem auto;
+  width: 2rem;
+}
+#ark-hourly-forecast .ark-hourly-desc::before {
+  display: inline-block;
+  font-family: var(--font-icon);
+  font-size: var(--fs-step-2);
+  font-weight: 100;
+  text-align: center;
+  width: 2rem;
+}
+#ark-hourly-forecast .ark-hourly-temp {
+  font-size: var(--fs-step-1);
+  padding-left: 1ch;
+}
+
 #ark-daily-forecast h2 {
   font-size: clamp(var(--fs-step-1),calc(1.09rem + 0.775vw),var(--fs-step-2));
   line-height: 1;
@@ -185,7 +198,7 @@ aside#settings.open {
   align-items: center;
   border-top: 1px var(--color-day-light) solid;
   display: flex;
-  font-family: var(--font-mono);;
+  font-family: var(--font-mono);
   justify-content: space-between;
   margin: 0 auto;
   max-width: 40ch;
@@ -196,6 +209,7 @@ aside#settings.open {
   width: 3ch;
 }
 #ark-daily-forecast .ark-daily-pop {
+  color: var(--color-day-faded);
   text-align: right;
   width: 4ch;
 }
@@ -211,51 +225,10 @@ aside#settings.open {
   width: 2rem;
 }
 #ark-daily-forecast .ark-daily-desc::before {
-  content: "";
   display: inline-block;
   font-family: var(--font-icon);
   font-size: clamp(var(--fs-step-1),calc(1.09rem + 0.775vw),var(--fs-step-2));
   font-weight: 100;
   text-align: center;
   width: 2rem;
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="01d"]::before { /* clear day */
-  content: "\f185";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="01n"]::before { /* clear night */
-  content: "\f755";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="02d"]::before { /* few clouds day */
-  content: "\f6c4";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="02n"]::before { /* few clouds night */
-  content: "\f6c3";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="03n"]::before,
-#ark-daily-forecast .ark-daily-desc[data-icon="03d"]::before { /* clouds */
-  content: "\f744";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="04n"]::before,
-#ark-daily-forecast .ark-daily-desc[data-icon="04d"]::before { /* broken clouds */
-  content: "\f744";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="09n"]::before,
-#ark-daily-forecast .ark-daily-desc[data-icon="09d"]::before { /* shower rain */
-  content: "\f73f";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="10n"]::before,
-#ark-daily-forecast .ark-daily-desc[data-icon="10d"]::before { /* rain */
-  content: "\f740";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="11n"]::before,
-#ark-daily-forecast .ark-daily-desc[data-icon="11d"]::before { /* thunderstorm */
-  content: "\f76c";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="13n"]::before,
-#ark-daily-forecast .ark-daily-desc[data-icon="13d"]::before { /* snow */
-  content: "\f7cf";
-}
-#ark-daily-forecast .ark-daily-desc[data-icon="50n"]::before,
-#ark-daily-forecast .ark-daily-desc[data-icon="50d"]::before { /* fog */
-  content: "\f74e";
 }

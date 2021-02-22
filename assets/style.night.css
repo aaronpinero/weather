@@ -1,9 +1,9 @@
 body.night {
-  background-color: hsl(215,40%,15%);
-  color: white;
+  background-color: var(--color-night-bg);
+  color: var(--color-night-fg);
 }
 body.night::before {
-  color: hsla(215,60%,80%,0.1);
+  color: var(--color-night-light);
 }
 body.night input[type="text"] {
   background-color: hsla(215,0%,100%,0.1);
@@ -11,20 +11,20 @@ body.night input[type="text"] {
   color: white;
 }
 body.night a {
-  color: hsl(215,80%,65%);
+  color: var(--color-night-link);
+}
+body.night .text-faded {
+  color: var(--color-night-faded);
 }
 body.night header {
-  border-bottom: 1px solid hsla(215,0%,100%,0.1);
-}
-body.night footer {
-  border-top: 1px solid hsla(215,0%,100%,0.1);
+  border-bottom: 1px solid var(--color-night-light);
 }
 body.night .btn-outline-primary {
-  color: hsl(215,80%,65%);
-  border-color: hsl(215,80%,65%);
+  color: var(--color-night-link);
+  border-color: var(--color-night-link);
 }
 body.night .btn-outline-primary:hover {
-  color: white;
+  color: var(--color-night-fg);
   border-color: var(--bs-blue);
 }
 body.night aside#settings {
@@ -35,4 +35,16 @@ body.night aside#settings {
 body.night.loading .ark-data-skeleton {
   background-color: hsla(215,60%,80%,0.2);
   background-image: linear-gradient(90deg, hsla(215,60%,80%,0) 10%, hsla(215,60%,80%,0.2) 50%, hsla(215,60%,88%,0) 90%);
+}
+body.night #ark-hourly-forecast li + li {
+  border-left: 1px solid var(--color-night-light);
+}
+body.night #ark-hourly-forecast .ark-hourly-pop {
+  color: var(--color-night-faded);
+}
+body.night #ark-daily-forecast li {
+  border-top: 1px var(--color-night-light) solid;
+}
+body.night #ark-daily-forecast .ark-daily-pop {
+  color: var(--color-night-faded);
 }

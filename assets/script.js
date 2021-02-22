@@ -140,6 +140,22 @@ function process_weather() {
       // Set icon through style
       document.getElementsByTagName('body').item(0).setAttribute('data-icon',response.current.weather[0].icon);
       
+      // Hourly forecast.
+      var hourly_code = '<ul class="">';
+      var hourly = response.hourly;
+      var x;
+      for (x=1;x<hourly.length;x++) {
+        hourly_code += '<li class="px-3">';
+        hourly_code += `<span class="ark-hourly-time">${format_day(hourly[x].dt)}</span>`;
+        hourly_code += `<span class="ark-hourly-time">${format_time(hourly[x].dt)}</span>`;
+        hourly_code += `<span class="ark-hourly-desc" data-icon="${hourly[x].weather[0].icon}">${hourly[x].weather[0].main}</span>`;
+        hourly_code += `<span class="ark-hourly-pop">${Math.round(hourly[x].pop * 100)}%</span>`;
+        hourly_code += `<span class="ark-hourly-temp">${Math.round(hourly[x].temp)}˚</span>`;
+        hourly_code += '</li>';
+      }
+      hourly_code += '</ul>';
+      document.querySelector('#ark-hourly-forecast').innerHTML = hourly_code;
+
       // Daily forecast.
       var daily_code = '<h2 class="text-center my-3">Next 7 Days</h2><ul class="text-center mx-0 my-3 p-0">';
       var daily = response.daily;
